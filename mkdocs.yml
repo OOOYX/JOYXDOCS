@@ -7,8 +7,10 @@ theme:
   name: material
 
 nav: 
-  - '封面':
-    - '封面': index.md
+  - '封面': index.md
   - '技术积累':
     - 'Web Development': 
-      - 'CSS': web_development/css.md
+      - 'CSS': techs/web_development/css.md
+  - '其他':
+    - 'Academic Writing':
+      - 'Lesson1': 'other/academic_writing/L1.md'
