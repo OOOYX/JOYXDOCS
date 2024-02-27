@@ -6,8 +6,18 @@ repo_name: OOOYX/JOYXDOCS
 theme: 
   name: material
 
+markdown_extensions:
+  - pymdownx.arithmatex
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js
+  - _js/configure-mathjax.js
+
 nav: 
   - '封面': index.md
+  - '课程笔记':
+    - '数值计算方法':
+      - 'L1-误差': courses/cal/L1.md
   - '技术积累':
     - 'Web Development': 
       - 'CSS': techs/web_development/css.md
@@ -15,3 +25,5 @@ nav:
     - 'Academic Writing':
       - 'Lesson1': 'other/academic_writing/L1.md'
       - 'Lesson2': 'other/academic_writing/L2.md'
+      - 'Lesson3': 'other/academic_writing/L3.md'
+      - 'Lesson4': 'other/academic_writing/L4.md'
