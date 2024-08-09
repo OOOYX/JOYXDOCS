@@ -4,5 +4,8 @@
   },
   "scripts": {
     "deploy": "gh-pages -d site"
+  },
+  "dependencies": {
+    "mathjax": "^3.2.2"
   }
 }
