@@ -20,6 +20,8 @@ nav:
       - 'CSS': techs/web_development/css.md
     - 'PyTorch':
       - 'Tensor': techs/pytorch/tensor.md
+    - 'DeepLearning': 
+      - '网络结构' : techs/Deep Learning/Nets.md
   - '其他':
     - 'Academic Writing':
       - 'Lesson1': 'other/academic_writing/L1.md'

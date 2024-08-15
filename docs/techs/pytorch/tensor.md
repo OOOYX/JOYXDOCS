@@ -89,49 +89,29 @@ troch.nn库是用于构建神经网络的工具库
 
 - **线性层（全连接层）**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.Linear(in_features, out_features, bias=True)
+torch.nn.Linear(in_features, out_features, bias=True)
   ```
 
 - **卷积层**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True)
+torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True)
   ```
 
 - **池化层**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.MaxPool2d(kernel_size, stride=None, padding=0)
+torch.nn.MaxPool2d(kernel_size, stride=None, padding=0)
   ```
 
 - **批归一化层**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.BatchNorm2d(num_features)
+torch.nn.BatchNorm2d(num_features)
   ```
 
 - **激活函数**：
-
-  python
-
-  复制
 
   ```
   torch.nn.ReLU(inplace=False)
@@ -143,29 +123,17 @@ troch.nn库是用于构建神经网络的工具库
 
 - **均方误差损失**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.MSELoss()
+torch.nn.MSELoss()
   ```
 
 - **交叉熵损失**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.CrossEntropyLoss()
+torch.nn.CrossEntropyLoss()
   ```
 
 - **二分类交叉熵损失**：
-
-  python
-
-  复制
 
   ```
   torch.nn.BCELoss()
@@ -177,29 +145,17 @@ troch.nn库是用于构建神经网络的工具库
 
 - **顺序容器（Sequential）**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.Sequential(*args)
+torch.nn.Sequential(*args)
   ```
 
 - **模块列表（ModuleList）**：
 
-  python
-
-  复制
-
   ```
-  torch.nn.ModuleList(modules=None)
+torch.nn.ModuleList(modules=None)
   ```
 
 - **模块字典（ModuleDict）**：
-
-  python
-
-  复制
 
   ```
   torch.nn.ModuleDict(modules=None)
@@ -208,10 +164,6 @@ troch.nn库是用于构建神经网络的工具库
 #### 4. **自定义模块（Custom Modules）**
 
 通过继承 `torch.nn.Module`，可以定义自己的神经网络模块：
-
-python
-
-复制
 
 ```
 import torch.nn as nn
@@ -233,10 +185,6 @@ class MyModel(nn.Module):
 
 `torch.nn.init` 子模块提供了一些常见的参数初始化方法：
 
-python
-
-复制
-
 ```
 import torch.nn.init as init
 
@@ -250,10 +198,6 @@ init.normal_(tensor, mean=0.0, std=1.0)
 ### 典型使用流程
 
 以下是一个典型的使用 `torch.nn` 构建和训练神经网络的示例：
-
-python
-
-复制
 
 ```
 import torch
