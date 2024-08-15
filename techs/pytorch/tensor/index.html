@@ -12,7 +12,7 @@
         <link rel="prev" href="../../web_development/css/">
       
       
-        <link rel="next" href="../../../other/academic_writing/L1/">
+        <link rel="next" href="../../Deep%20Learning/Nets/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -581,6 +581,72 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DeepLearning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            DeepLearning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deep%20Learning/Nets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1018,77 +1084,53 @@ if torch.cuda.is_available():
 <ul>
 <li><strong>线性层（全连接层）</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.Linear(in_features, out_features, bias=True)</code></p>
 <ul>
 <li><strong>卷积层</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True)</code></p>
 <ul>
 <li><strong>池化层</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.MaxPool2d(kernel_size, stride=None, padding=0)</code></p>
 <ul>
 <li><strong>批归一化层</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.BatchNorm2d(num_features)</code></p>
 <ul>
 <li><strong>激活函数</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.ReLU(inplace=False)</code></p>
 <h4 id="2-loss-functions">2. <strong>损失函数（Loss Functions）</strong></h4>
 <p><code>torch.nn</code> 提供了多种损失函数，用于衡量模型预测值和真实值之间的差异，例如：</p>
 <ul>
 <li><strong>均方误差损失</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.MSELoss()</code></p>
 <ul>
 <li><strong>交叉熵损失</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.CrossEntropyLoss()</code></p>
 <ul>
 <li><strong>二分类交叉熵损失</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.BCELoss()</code></p>
 <h4 id="3-containers">3. <strong>容器（Containers）</strong></h4>
 <p>容器用于将多个层组合在一起，形成一个更大的模型。例如：</p>
 <ul>
 <li><strong>顺序容器（Sequential）</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.Sequential(*args)</code></p>
 <ul>
 <li><strong>模块列表（ModuleList）</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.ModuleList(modules=None)</code></p>
 <ul>
 <li><strong>模块字典（ModuleDict）</strong>：</li>
 </ul>
-<p>python</p>
-<p>复制</p>
 <p><code>torch.nn.ModuleDict(modules=None)</code></p>
 <h4 id="4-custom-modules">4. <strong>自定义模块（Custom Modules）</strong></h4>
 <p>通过继承 <code>torch.nn.Module</code>，可以定义自己的神经网络模块：</p>
-<p>python</p>
-<p>复制</p>
 <pre><code>import torch.nn as nn
 
 class MyModel(nn.Module):
@@ -1105,8 +1147,6 @@ class MyModel(nn.Module):
 </code></pre>
 <h4 id="5-initialization">5. <strong>参数初始化（Initialization）</strong></h4>
 <p><code>torch.nn.init</code> 子模块提供了一些常见的参数初始化方法：</p>
-<p>python</p>
-<p>复制</p>
 <pre><code>import torch.nn.init as init
 
 # 初始化权重为均匀分布
@@ -1117,8 +1157,6 @@ init.normal_(tensor, mean=0.0, std=1.0)
 </code></pre>
 <h3 id="_4">典型使用流程</h3>
 <p>以下是一个典型的使用 <code>torch.nn</code> 构建和训练神经网络的示例：</p>
-<p>python</p>
-<p>复制</p>
 <pre><code>import torch
 import torch.nn as nn
 import torch.optim as optim
