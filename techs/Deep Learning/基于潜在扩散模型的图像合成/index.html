@@ -822,7 +822,7 @@
 <blockquote>
 <p>本篇内容基于论文High-Resolution Image Synthesis with Latent Diffusion Models，Robin Rombach，Andreas Blattmann，Dominik Lorenz，Patrick Esser，Bjorn Ommer</p>
 </blockquote>
-<p><img alt="image-20240817024641603" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\image-20240817024641603.png" /></p>
+<p><img alt="image-20240817024641603" src="../../../imgs/image-20240817024641603.png" /></p>
 <p>上图显示了训练模型的速率失真权衡（the rate-distortion trade-offl）。</p>
 <p>失真情况（纵轴）随着学习率（横轴）的变化分为两个阶段：</p>
 <ol>
@@ -831,43 +831,51 @@
 </ol>
 <p>我们的目标是找一个<strong>感知上等效但计算上更合适的位置</strong>（即接近转折点处），在这个位置训练用于高分辨率图像合成的扩散模型。</p>
 <h2 id="_2">模型原理</h2>
-<p><img alt="image-20240817024652851" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\image-20240817024652851.png" /></p>
+<p><img alt="image-20240817024652851" src="../../../imgs/image-20240817024652851.png" /></p>
 <h3 id="perceptual-image-compression">Perceptual Image Compression 感知图像压缩</h3>
 <p>Figure 1中左侧红色部分</p>
 <ul>
-<li>编码器<span class="arithmatex"><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span>：<span class="arithmatex"><span class="MathJax_Preview">z = \epsilon(x)</span><script type="math/tex">z = \epsilon(x)</script></span>, 其中 <span class="arithmatex"><span class="MathJax_Preview">x\in \mathbb{R}^{H\times W\times 3}</span><script type="math/tex">x\in \mathbb{R}^{H\times W\times 3}</script></span>为图像的RGB向量表示, <span class="arithmatex"><span class="MathJax_Preview">z\in \mathbb{R}^{h\times w\times c}</span><script type="math/tex">z\in \mathbb{R}^{h\times w\times c}</script></span></li>
+<li>编码器<span class="arithmatex">\(\epsilon\)</span>：<span class="arithmatex">\(z = \epsilon(x)\)</span>, 其中 <span class="arithmatex">\(x\in \mathbb{R}^{H\times W\times 3}\)</span>为图像的RGB向量表示, <span class="arithmatex">\(z\in \mathbb{R}^{h\times w\times c}\)</span></li>
 <li>
-<p>解码器D：<span class="arithmatex"><span class="MathJax_Preview">\hat{x} = D(z) = D(\epsilon(x))</span><script type="math/tex">\hat{x} = D(z) = D(\epsilon(x))</script></span></p>
+<p>解码器D：<span class="arithmatex">\(\hat{x} = D(z) = D(\epsilon(x))\)</span></p>
 </li>
 <li>
-<p>下采样因数<span class="arithmatex"><span class="MathJax_Preview">f = H/h = W/w</span><script type="math/tex">f = H/h = W/w</script></span>, 通常使用<span class="arithmatex"><span class="MathJax_Preview">f = 2^m, m\in\mathbb{N}</span><script type="math/tex">f = 2^m, m\in\mathbb{N}</script></span></p>
+<p>下采样因数<span class="arithmatex">\(f = H/h = W/w\)</span>, 通常使用<span class="arithmatex">\(f = 2^m, m\in\mathbb{N}\)</span></p>
 </li>
 </ul>
 <p>在此变换基础上，可以由扩散模型的损失函数（1）得到<strong>潜在扩散模型的损失函数</strong>（2）</p>
-<p><img alt="屏幕截图 2024-08-17 024302" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024302.png" /></p>
-<p><img alt="屏幕截图 2024-08-17 024326" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024326.png" /></p>
+<p><img alt="屏幕截图 2024-08-17 024302" src="../../../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-17%20024302.png" /></p>
+<p><img alt="屏幕截图 2024-08-17 024326" src="../../../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-17%20024326.png" /></p>
 <p>其中：</p>
 <ul>
-<li><span class="arithmatex"><span class="MathJax_Preview">\mathbb{E}_{x,\epsilon\sim\Nu(0,1),t}</span><script type="math/tex">\mathbb{E}_{x,\epsilon\sim\Nu(0,1),t}</script></span>表示在所有 x，噪声 ϵ（服从标准正态分布 (0,1)N(0,1)），和时间步 t 上取平均。</li>
+<li><span class="arithmatex">\(\mathbb{E}_{x,\epsilon\sim\Nu(0,1),t}\)</span>表示在所有 x，噪声 ϵ（服从标准正态分布 (0,1)N(0,1)），和时间步 t 上取平均。</li>
 <li>$ \epsilon_{\theta}(x(t), t) $表示模型预测的噪声</li>
-<li><span class="arithmatex"><span class="MathJax_Preview">\|\epsilon - \epsilon_{\theta}(x(t), t)\|^2</span><script type="math/tex">\|\epsilon - \epsilon_{\theta}(x(t), t)\|^2</script></span>表示平方欧几里得距离，用于衡量模型预测的噪声与真实噪声之间的差异</li>
+<li><span class="arithmatex">\(\|\epsilon - \epsilon_{\theta}(x(t), t)\|^2\)</span>表示平方欧几里得距离，用于衡量模型预测的噪声与真实噪声之间的差异</li>
 </ul>
-<p>这个损失函数的目标是最小化模型预测的噪声和真实噪声之间的差异。通过这种方式，模型学习如何逆转扩散过程，即从噪声数据 <span class="arithmatex"><span class="MathJax_Preview"> x(t) </span><script type="math/tex"> x(t) </script></span> 重构出原始数据 <span class="arithmatex"><span class="MathJax_Preview"> x </span><script type="math/tex"> x </script></span>。这是通过优化模型参数 <span class="arithmatex"><span class="MathJax_Preview"> $\theta$ </span><script type="math/tex"> $\theta$ </script></span> 来实现的，使得预测的噪声尽可能接近实际添加到数据中的噪声。</p>
+<p>这个损失函数的目标是最小化模型预测的噪声和真实噪声之间的差异。通过这种方式，模型学习如何逆转扩散过程，即从噪声数据 <span class="arithmatex">\( x(t) \)</span> 重构出原始数据 <span class="arithmatex">\( x \)</span>。这是通过优化模型参数 <span class="arithmatex">\( $\theta$ \)</span> 来实现的，使得预测的噪声尽可能接近实际添加到数据中的噪声。</p>
 <h3 id="conditioning-mechanism">Conditioning Mechanism 调节机制</h3>
 <p>通过结合扩散模型（DMs）和其他类型的条件输入，可以提高生成模型处理不同任务的能力。调节机制增强了U-Net基础架构，并引入了注意力机制。</p>
-<p><img alt="屏幕截图 2024-08-17 024342" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024342.png" /></p>
+<p><img alt="屏幕截图 2024-08-17 024326" src="../../../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-17%20024342.png" /></p>
 <p>Q，K，V是注意力机制的三个基本组成部分，这使模型能够基于输入的不同特征（由K和V表示）对信息（由Q查询）进行加权和整合。</p>
 <ul>
 <li>
-<p><span class="arithmatex"><span class="MathJax_Preview">\varphi_i(z_t)</span><script type="math/tex">\varphi_i(z_t)</script></span>：U-Net模型的一个中间表示</p>
+<p><span class="arithmatex">\(\varphi_i(z_t)\)</span>：U-Net模型的一个中间表示</p>
 </li>
 <li>
-<p><span class="arithmatex"><span class="MathJax_Preview">\tau</span><script type="math/tex">\tau</script></span>: 输入 <em>y</em> 的一个域特定的预处理函数, y为模型输入的条件</p>
+<p><span class="arithmatex">\(\tau\)</span>: 输入 <em>y</em> 的一个域特定的预处理函数, y为模型输入的条件</p>
 </li>
-<li><span class="arithmatex"><span class="MathJax_Preview">W_Q,W_K,W_V</span><script type="math/tex">W_Q,W_K,W_V</script></span>是可学习的投影矩阵</li>
+<li><span class="arithmatex">\(W_Q,W_K,W_V\)</span>是可学习的投影矩阵</li>
 </ul>
-<p>据此可以把公式（2）扩展到公式（3），引入条件<span class="arithmatex"><span class="MathJax_Preview">\tau_{\theta}(y)</span><script type="math/tex">\tau_{\theta}(y)</script></span></p>
+<p>据此可以把公式（2）扩展到公式（3），引入条件<span class="arithmatex">\(\tau_{\theta}(y)\)</span></p>
 <p><img alt="屏幕截图 2024-08-17 024359" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024359.png" /></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:Figure 1">
+<p>模型结构原理图&#160;<a class="footnote-backref" href="#fnref:Figure 1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
