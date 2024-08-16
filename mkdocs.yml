@@ -22,6 +22,7 @@ nav:
       - 'Tensor': techs/pytorch/tensor.md
     - 'DeepLearning': 
       - '网络结构' : techs/Deep Learning/Nets.md
+      - '基于潜在扩散模型的图像合成 : techs/Deep Learning/基于潜在扩散模型的图像合成.md
   - '其他':
     - 'Academic Writing':
       - 'Lesson1': 'other/academic_writing/L1.md'
