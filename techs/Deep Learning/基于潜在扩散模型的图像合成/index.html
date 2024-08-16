@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../web_development/css/">
+        <link rel="prev" href="../Nets/">
       
       
-        <link rel="next" href="../../Deep%20Learning/Nets/">
+        <link rel="next" href="../../../other/academic_writing/L1/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Tensor - JOYXDOCS</title>
+        <title>基于潜在扩散模型的图像合成 - JOYXDOCS</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tensor" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tensor
+              基于潜在扩散模型的图像合成
             
           </span>
         </div>
@@ -337,21 +337,19 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -365,7 +363,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             PyTorch
@@ -376,28 +374,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Tensor
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../pytorch/tensor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -406,168 +386,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tensor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tensor
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Tensor">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建张量
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      梯度
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#backward" class="md-nav__link">
-    <span class="md-ellipsis">
-      .backward()方法
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      GPU
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#torchnn" class="md-nav__link">
-    <span class="md-ellipsis">
-      神经网络—torch.nn库
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="神经网络—torch.nn库">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      主要组件
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="主要组件">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. 神经网络层（Layers）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-loss-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 损失函数（Loss Functions）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-containers" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 容器（Containers）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-custom-modules" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 自定义模块（Custom Modules）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. 参数初始化（Initialization）
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      典型使用流程
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      总结
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -585,19 +403,21 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -611,7 +431,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             DeepLearning
@@ -625,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Deep%20Learning/Nets/" class="md-nav__link">
+      <a href="../Nets/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -643,10 +463,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../Deep%20Learning/%E5%9F%BA%E4%BA%8E%E6%BD%9C%E5%9C%A8%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    基于潜在扩散模型的图像合成
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -655,6 +495,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模型原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perceptual-image-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perceptual Image Compression 感知图像压缩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditioning-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditioning Mechanism 调节机制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -865,6 +758,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -873,139 +768,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tensor" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tensor
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Tensor">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建张量
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      梯度
+      模型原理
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#backward" class="md-nav__link">
-    <span class="md-ellipsis">
-      .backward()方法
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      GPU
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#torchnn" class="md-nav__link">
-    <span class="md-ellipsis">
-      神经网络—torch.nn库
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="神经网络—torch.nn库">
+    <nav class="md-nav" aria-label="模型原理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#perceptual-image-compression" class="md-nav__link">
     <span class="md-ellipsis">
-      主要组件
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="主要组件">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. 神经网络层（Layers）
+      Perceptual Image Compression 感知图像压缩
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-loss-functions" class="md-nav__link">
+  <a href="#conditioning-mechanism" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 损失函数（Loss Functions）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-containers" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. 容器（Containers）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-custom-modules" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. 自定义模块（Custom Modules）
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. 参数初始化（Initialization）
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      典型使用流程
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      总结
+      Conditioning Mechanism 调节机制
     </span>
   </a>
   
@@ -1034,192 +818,56 @@
   
 
 
-  <h1>Tensor</h1>
-
-<h2 id="tensor">Tensor</h2>
-<h3 id="_1">创建张量</h3>
+<h1 id="_1">扩散模型</h1>
+<blockquote>
+<p>本篇内容基于论文High-Resolution Image Synthesis with Latent Diffusion Models，Robin Rombach，Andreas Blattmann，Dominik Lorenz，Patrick Esser，Bjorn Ommer</p>
+</blockquote>
+<p><img alt="image-20240817024641603" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\image-20240817024641603.png" /></p>
+<p>上图显示了训练模型的速率失真权衡（the rate-distortion trade-offl）。</p>
+<p>失真情况（纵轴）随着学习率（横轴）的变化分为两个阶段：</p>
+<ol>
+<li><strong>Perceptual Compression 感知压缩阶段</strong>：消除了高频细节</li>
+<li><strong>Semantic Compression 语义压缩阶段</strong>：实际的生成模型学习数据的语义和概念组成</li>
+</ol>
+<p>我们的目标是找一个<strong>感知上等效但计算上更合适的位置</strong>（即接近转折点处），在这个位置训练用于高分辨率图像合成的扩散模型。</p>
+<h2 id="_2">模型原理</h2>
+<p><img alt="image-20240817024652851" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\image-20240817024652851.png" /></p>
+<h3 id="perceptual-image-compression">Perceptual Image Compression 感知图像压缩</h3>
+<p>Figure 1中左侧红色部分</p>
 <ul>
-<li>torch.ones </li>
-<li>torch.empty</li>
-<li>torch.zeros</li>
-<li>torch.tensor 已有数据创建</li>
+<li>编码器<span class="arithmatex"><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span>：<span class="arithmatex"><span class="MathJax_Preview">z = \epsilon(x)</span><script type="math/tex">z = \epsilon(x)</script></span>, 其中 <span class="arithmatex"><span class="MathJax_Preview">x\in \mathbb{R}^{H\times W\times 3}</span><script type="math/tex">x\in \mathbb{R}^{H\times W\times 3}</script></span>为图像的RGB向量表示, <span class="arithmatex"><span class="MathJax_Preview">z\in \mathbb{R}^{h\times w\times c}</span><script type="math/tex">z\in \mathbb{R}^{h\times w\times c}</script></span></li>
+<li>
+<p>解码器D：<span class="arithmatex"><span class="MathJax_Preview">\hat{x} = D(z) = D(\epsilon(x))</span><script type="math/tex">\hat{x} = D(z) = D(\epsilon(x))</script></span></p>
+</li>
+<li>
+<p>下采样因数<span class="arithmatex"><span class="MathJax_Preview">f = H/h = W/w</span><script type="math/tex">f = H/h = W/w</script></span>, 通常使用<span class="arithmatex"><span class="MathJax_Preview">f = 2^m, m\in\mathbb{N}</span><script type="math/tex">f = 2^m, m\in\mathbb{N}</script></span></p>
+</li>
 </ul>
-<pre><code class="language-python"># 创建一个tensor，并设置requires_grad=True以跟踪计算历史  
-x = torch.ones(2, 2, requires_grad=True)  
-</code></pre>
-<h3 id="_2">梯度</h3>
-<p>张量的梯度是一个与张量形状相同的张量，表示损失函数（或标量目标函数）对该张量的每个元素的偏导数。梯度是反向传播算法的核心部分，用于更新模型参数以优化（通常是最小化）损失函数。</p>
-<pre><code class="language-python">import torch
-
-# 创建一个张量，并设置 requires_grad=True 以跟踪计算历史
-x = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
-
-# 定义一个简单的函数 y = 3 * x^2
-y = 3 * x ** 2
-
-# 将 y 归约为标量，例如通过求和
-z = y.sum()
-
-# 计算 z 对 x 的梯度
-z.backward()
-
-# 输出 x 的梯度
-print(x.grad)  # 输出: tensor([ 6.0000, 12.0000, 18.0000])
-</code></pre>
-<p>这一段代码中<code>z.backward()</code>方法的作用是计算标量 <code>z</code> 对张量 <code>x</code> 的梯度。具体来说，它会通过自动微分机制，在计算图上执行反向传播，计算损失函数（在这里是标量 <code>z</code>）对每个叶子张量（在这里是 <code>x</code>）的偏导数，并将这些偏导数存储在相应张量的 <code>.grad</code> 属性中。</p>
-<h3 id="backward">.backward()方法</h3>
-<pre><code class="language-python">out.backward(torch.tensor([0.1,1.0,1.0]),dtype=float)
-</code></pre>
-<p>如果<code>out</code>不是一个标量，那么在调用<code>.backward()</code>时需要传入一个与<code>out</code>同形的权重向量进行相乘。</p>
-<h2 id="gpu">GPU</h2>
+<p>在此变换基础上，可以由扩散模型的损失函数（1）得到<strong>潜在扩散模型的损失函数</strong>（2）</p>
+<p><img alt="屏幕截图 2024-08-17 024302" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024302.png" /></p>
+<p><img alt="屏幕截图 2024-08-17 024326" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024326.png" /></p>
+<p>其中：</p>
 <ul>
-<li><code>torch.cuda.is_available()</code>检查GPU是否可用</li>
+<li><span class="arithmatex"><span class="MathJax_Preview">\mathbb{E}_{x,\epsilon\sim\Nu(0,1),t}</span><script type="math/tex">\mathbb{E}_{x,\epsilon\sim\Nu(0,1),t}</script></span>表示在所有 x，噪声 ϵ（服从标准正态分布 (0,1)N(0,1)），和时间步 t 上取平均。</li>
+<li>$ \epsilon_{\theta}(x(t), t) $表示模型预测的噪声</li>
+<li><span class="arithmatex"><span class="MathJax_Preview">\|\epsilon - \epsilon_{\theta}(x(t), t)\|^2</span><script type="math/tex">\|\epsilon - \epsilon_{\theta}(x(t), t)\|^2</script></span>表示平方欧几里得距离，用于衡量模型预测的噪声与真实噪声之间的差异</li>
 </ul>
-<pre><code class="language-python"># 创建一个tensor  
-x = torch.tensor([1.0, 2.0])  
-
-# 移动tensor到GPU上  
-if torch.cuda.is_available():  
-    x = x.to('cuda')  
-</code></pre>
-<pre><code class="language-python"># 直接在GPU上创建tensor  
-if torch.cuda.is_available():  
-    x = torch.tensor([1.0, 2.0], device='cuda')  
-</code></pre>
-<pre><code class="language-python"># 创建一个简单的模型  
-model = torch.nn.Linear(10, 1)  
-
-# 创建一些数据  
-data = torch.randn(100, 10)  
-
-# 移动模型和数据到GPU  
-if torch.cuda.is_available():  
-    model = model.to('cuda')  
-    data = data.to('cuda')  
-</code></pre>
-<h2 id="torchnn">神经网络—torch.nn库</h2>
-<p>troch.nn库是用于构建神经网络的工具库</p>
-<h3 id="_3">主要组件</h3>
-<h4 id="1-layers">1. <strong>神经网络层（Layers）</strong></h4>
-<p><code>torch.nn</code> 提供了多种常用的神经网络层，例如：</p>
+<p>这个损失函数的目标是最小化模型预测的噪声和真实噪声之间的差异。通过这种方式，模型学习如何逆转扩散过程，即从噪声数据 <span class="arithmatex"><span class="MathJax_Preview"> x(t) </span><script type="math/tex"> x(t) </script></span> 重构出原始数据 <span class="arithmatex"><span class="MathJax_Preview"> x </span><script type="math/tex"> x </script></span>。这是通过优化模型参数 <span class="arithmatex"><span class="MathJax_Preview"> $\theta$ </span><script type="math/tex"> $\theta$ </script></span> 来实现的，使得预测的噪声尽可能接近实际添加到数据中的噪声。</p>
+<h3 id="conditioning-mechanism">Conditioning Mechanism 调节机制</h3>
+<p>通过结合扩散模型（DMs）和其他类型的条件输入，可以提高生成模型处理不同任务的能力。调节机制增强了U-Net基础架构，并引入了注意力机制。</p>
+<p><img alt="屏幕截图 2024-08-17 024342" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024342.png" /></p>
+<p>Q，K，V是注意力机制的三个基本组成部分，这使模型能够基于输入的不同特征（由K和V表示）对信息（由Q查询）进行加权和整合。</p>
 <ul>
-<li><strong>线性层（全连接层）</strong>：</li>
+<li>
+<p><span class="arithmatex"><span class="MathJax_Preview">\varphi_i(z_t)</span><script type="math/tex">\varphi_i(z_t)</script></span>：U-Net模型的一个中间表示</p>
+</li>
+<li>
+<p><span class="arithmatex"><span class="MathJax_Preview">\tau</span><script type="math/tex">\tau</script></span>: 输入 <em>y</em> 的一个域特定的预处理函数, y为模型输入的条件</p>
+</li>
+<li><span class="arithmatex"><span class="MathJax_Preview">W_Q,W_K,W_V</span><script type="math/tex">W_Q,W_K,W_V</script></span>是可学习的投影矩阵</li>
 </ul>
-<p><code>torch.nn.Linear(in_features, out_features, bias=True)</code></p>
-<ul>
-<li><strong>卷积层</strong>：</li>
-</ul>
-<p><code>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True)</code></p>
-<ul>
-<li><strong>池化层</strong>：</li>
-</ul>
-<p><code>torch.nn.MaxPool2d(kernel_size, stride=None, padding=0)</code></p>
-<ul>
-<li><strong>批归一化层</strong>：</li>
-</ul>
-<p><code>torch.nn.BatchNorm2d(num_features)</code></p>
-<ul>
-<li><strong>激活函数</strong>：</li>
-</ul>
-<p><code>torch.nn.ReLU(inplace=False)</code></p>
-<h4 id="2-loss-functions">2. <strong>损失函数（Loss Functions）</strong></h4>
-<p><code>torch.nn</code> 提供了多种损失函数，用于衡量模型预测值和真实值之间的差异，例如：</p>
-<ul>
-<li><strong>均方误差损失</strong>：</li>
-</ul>
-<p><code>torch.nn.MSELoss()</code></p>
-<ul>
-<li><strong>交叉熵损失</strong>：</li>
-</ul>
-<p><code>torch.nn.CrossEntropyLoss()</code></p>
-<ul>
-<li><strong>二分类交叉熵损失</strong>：</li>
-</ul>
-<p><code>torch.nn.BCELoss()</code></p>
-<h4 id="3-containers">3. <strong>容器（Containers）</strong></h4>
-<p>容器用于将多个层组合在一起，形成一个更大的模型。例如：</p>
-<ul>
-<li><strong>顺序容器（Sequential）</strong>：</li>
-</ul>
-<p><code>torch.nn.Sequential(*args)</code></p>
-<ul>
-<li><strong>模块列表（ModuleList）</strong>：</li>
-</ul>
-<p><code>torch.nn.ModuleList(modules=None)</code></p>
-<ul>
-<li><strong>模块字典（ModuleDict）</strong>：</li>
-</ul>
-<p><code>torch.nn.ModuleDict(modules=None)</code></p>
-<h4 id="4-custom-modules">4. <strong>自定义模块（Custom Modules）</strong></h4>
-<p>通过继承 <code>torch.nn.Module</code>，可以定义自己的神经网络模块：</p>
-<pre><code>import torch.nn as nn
-
-class MyModel(nn.Module):
-    def __init__(self):
-        super(MyModel, self).__init__()
-        self.layer1 = nn.Linear(10, 20)
-        self.layer2 = nn.Linear(20, 10)
-
-    def forward(self, x):
-        x = self.layer1(x)
-        x = nn.ReLU()(x)
-        x = self.layer2(x)
-        return x
-</code></pre>
-<h4 id="5-initialization">5. <strong>参数初始化（Initialization）</strong></h4>
-<p><code>torch.nn.init</code> 子模块提供了一些常见的参数初始化方法：</p>
-<pre><code>import torch.nn.init as init
-
-# 初始化权重为均匀分布
-init.uniform_(tensor, a=0.0, b=1.0)
-
-# 初始化权重为正态分布
-init.normal_(tensor, mean=0.0, std=1.0)
-</code></pre>
-<h3 id="_4">典型使用流程</h3>
-<p>以下是一个典型的使用 <code>torch.nn</code> 构建和训练神经网络的示例：</p>
-<pre><code>import torch
-import torch.nn as nn
-import torch.optim as optim
-
-# 定义模型
-class SimpleModel(nn.Module):
-    def __init__(self):
-        super(SimpleModel, self).__init__()
-        self.fc1 = nn.Linear(10, 50)
-        self.fc2 = nn.Linear(50, 1)
-
-    def forward(self, x):
-        x = torch.relu(self.fc1(x))
-        x = self.fc2(x)
-        return x
-
-# 实例化模型
-model = SimpleModel()
-
-# 定义损失函数和优化器
-criterion = nn.MSELoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01)
-
-# 生成一些示例数据
-inputs = torch.randn(32, 10)
-targets = torch.randn(32, 1)
-
-# 训练循环
-for epoch in range(100):
-    # 前向传播
-    outputs = model(inputs)
-    loss = criterion(outputs, targets)
-
-    # 反向传播和优化
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
-
-    print(f'Epoch [{epoch+1}/100], Loss: {loss.item():.4f}')
-</code></pre>
-<h3 id="_5">总结</h3>
-<p><code>torch.nn</code> 是 PyTorch 中一个功能强大的模块，提供了构建、训练和评估神经网络所需的各种工具。通过结合使用不同的层、损失函数和优化器，你可以构建和训练各种复杂的深度学习模型。理解 <code>torch.nn</code> 的各个组件及其用途是掌握 PyTorch 的关键。</p>
+<p>据此可以把公式（2）扩展到公式（3），引入条件<span class="arithmatex"><span class="MathJax_Preview">\tau_{\theta}(y)</span><script type="math/tex">\tau_{\theta}(y)</script></span></p>
+<p><img alt="屏幕截图 2024-08-17 024359" src="C:\Users\user\Desktop\JOYXDOCS\docs\imgs\屏幕截图 2024-08-17 024359.png" /></p>
 
 
 
