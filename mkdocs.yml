@@ -3,8 +3,9 @@ site_name: JOYXDOCS
 repo_url: https://github.com/OOOYX/JOYXDOCS.git
 repo_name: OOOYX/JOYXDOCS
 
-theme: 
-  name: material
+theme:
+  name: gitbook
+
 
 markdown_extensions:
   - pymdownx.arithmatex:
