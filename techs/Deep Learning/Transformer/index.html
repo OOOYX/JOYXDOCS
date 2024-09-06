@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Transformer - JOYXDOCS</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.5.3, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../.." target="_blank" class="custom-link">JOYXDOCS</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../..">封面</a>
+<li class="header">技术积累</li>
+
+<li>
+<a href="#">网页开发</a>
+<ul>
+
+<li>
+<a href="../../web_development/css/" class="">CSS</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">PyTorch</a>
+<ul>
+
+<li>
+<a href="../../pytorch/tensor/" class="">Tensor</a>
+</li>
+</ul>
+</li>
+
+<li>
+<a href="#">DeepLearning</a>
+<ul>
+
+<li>
+<a href="../Nets/" class="">网络结构</a>
+</li>
+
+<li>
+<a href="../%E5%9F%BA%E4%BA%8E%E6%BD%9C%E5%9C%A8%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90/" class="">基于潜在扩散模型的图像合成</a>
+</li>
+
+<li>
+<a href="./" class="active">Transformer</a>
+</li>
+</ul>
+</li>
+
+<li class="header">其他</li>
+
+<li>
+<a href="#">Academic Writing</a>
+<ul>
+
+<li>
+<a href="../../../other/academic_writing/L1/" class="">Lesson1</a>
+</li>
+
+<li>
+<a href="../../../other/academic_writing/L2/" class="">Lesson2</a>
+</li>
+
+<li>
+<a href="../../../other/academic_writing/L3/" class="">Lesson3</a>
+</li>
+
+<li>
+<a href="../../../other/academic_writing/L4/" class="">Lesson4</a>
+</li>
+</ul>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="transformer">Transformer</h1>
+<h2 id="_1">结构</h2>
+<p><img alt="img" src="../../../imgs/1cf0950703fa5a5a157015b52295a942.png" /></p>
+<p>Transformer模型可以分为这两个部分：</p>
+<p><strong>1. Encoder</strong>：上图左边部分，其中又有三个部分，<strong>输入、多头注意力机制、前馈神经网络</strong></p>
+<ul>
+<li><strong>输入</strong></li>
+<li>
+<p>词嵌入（Input Embedding）：将自然语言转化为与其对应的独一无二的词向量表达</p>
+</li>
+<li>
+<p>位置编码器（Position Encoding）：表示单词出现在句子中的位置</p>
+</li>
+<li>
+<p><strong>注意力机制</strong></p>
+</li>
+<li>Multi-Head Attention：由多个Self-Attention组成</li>
+<li>
+<p>Self-Attention</p>
+</li>
+<li>
+<p><strong>前馈神经网络</strong></p>
+</li>
+</ul>
+<p><strong>2. Decoder</strong>：右边部分，Decoder的第一个Multi-Head Attention采用了Masked操作，最后有一个 Softmax 层计算下一个翻译单词的概率。</p>
+<ul>
+<li>
+<p><strong>Linear层</strong>：一个全连接神经网络，把Decoder产生的向量投射到一个比它大得多的、被称作对数几率（logits）的向量里。例如模型从训练集中学习一万个不同的英语单词（模型的“输出词表”），那么对数几率向量为一万个单元格长度的向量——每个单元格对应某一个单词的分数</p>
+</li>
+<li>
+<p><strong>Softmax层</strong>：把分数变成概率（都为正数、上限1.0）。概率最高的单元格被选中，并且它对应的单词被作为这个时间的输出。</p>
+</li>
+</ul>
+<h2 id="_2">注意力机制</h2>
+<h3 id="_3">核心概念</h3>
+<p>输入：Q（query，查询），K（key，键），V（value，值） </p>
+<p>输出：Attention Value</p>
+<ul>
+<li><strong>查询（Query）</strong>：查询的范围，即主观意识的特征向量。类似搜索时输入的关键词</li>
+<li><strong>键（Key）</strong>：被比对的项，即物体的突出特征信息向量。类似商品名称</li>
+<li><strong>值（Value）</strong>：代表物体本身的向量，通常和Key成对出现。类似具体的商品</li>
+<li><strong>Attention Value</strong>：表示模型关注输入数据中哪些部分的结果</li>
+</ul>
+<h3 id="_4">计算过程</h3>
+<p><img alt="img" src="../../../imgs/d019a10f52f95145798e2659d6ed7cb6.png" /></p>
+<ul>
+<li><strong>阶段一</strong>：根据输入的Query和Key计算两者之间的相关性或相似性，得到注意力得分（s1,s2,s3,s4）。可以使用不同的方法（即图中的F（Q，K）），例如点积、余弦相似度、MLP网络。</li>
+<li><strong>阶段二</strong>：对注意力得分进行缩放scale（除以维度的根号），再softmax函数，一方面可以进行归一化，将原始计算分值整理成所有元素权重之和为1的概率分布；另一方面也可以通过softmax的内在机制更加突出重要元素的权重。得到权重系数（a1,a2,a3,a4），这些权重表示查询与每个键的相关性，权重系数越高，说明K越符合要求的Q，则与K对应的V要占更大比重。</li>
+<li><strong>阶段三</strong>：根据权重系数对Value值进行加权求和，得到Attention Value（此时的V是具有一些注意力信息的，更重要的信息更关注，不重要的信息被忽视了）</li>
+</ul>
+<h3 id="self-attention">自注意力机制 Self-Attention</h3>
+<p>​   自注意力机制想要解决的问题场景是神经网络接收的输入是很多大小不一的向量，并且不同向量向量之间有一定的关系，但是实际训练的时候无法充分发挥这些输入之间的关系而导致模型训练结果效果极差。比如机器翻译(序列到序列的问题，机器自己决定多少个标签)，词性标注(Pos tagging一个向量对应一个标签)，语义分析(多个向量对应一个标签)等文字处理问题。</p>
+<p>​   自注意力机制的关键是<strong>Q、K、V来自同一个来源X</strong>。</p>
+<blockquote>
+<p>注意力机制和自注意力机制的区别：</p>
+<ol>
+<li>
+<p>注意力机制的Q和K是不同来源的，例如，在Encoder-Decoder模型中，K是Encoder中的元素，而Q是Decoder中的元素。在中译英模型中，中文句子通过编码器被转化为一组特征表示K，这些特征表示包含了输入中文句子的语义信息。解码器在生成英文句子时，会使用这些特征表示K以及当前生成的英文单词特征Q来决定下一个英文单词是什么。</p>
+</li>
+<li>
+<p>自注意力机制的Q和K则都是来自于同一组的元素，例如，在Encoder-Decoder模型中，Q和K都是Encoder中的元素，即Q和K都是中文特征，相互之间做注意力汇聚。也可以理解为同一句话中的词元或者同一张图像中不同的patch，这都是一组元素内部相互做注意力机制，因此，自注意力机制（self-attention）也被称为内部注意力机制（intra-attention）。</p>
+</li>
+</ol>
+</blockquote>
+<p>​   相比注意力机制的计算过程，自注意力机制要增加一个阶段零。</p>
+<ul>
+<li><strong>阶段零</strong>：对于每一个向量X，分别乘上三个系数<span class="arithmatex">\(W^Q,W^K,W^V\)</span>,，得到的Q，K和V分别表示Query，Key和Value</li>
+</ul>
+<h3 id="multi-head-attention">多头注意力机制 Multi-Head Attention</h3>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../js/main.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script src="../../../_js/configure-mathjax.js"></script>
+<script src="../../../search/main.js"></script>
+<script src="../../../js/gitbook.min.js"></script>
+<script src="../../../js/theme.min.js"></script>
+</body>
+</html>
