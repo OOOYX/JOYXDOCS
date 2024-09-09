@@ -200,9 +200,38 @@ Theme by GitBook
 </blockquote>
 <p>​   相比注意力机制的计算过程，自注意力机制要增加一个阶段零。</p>
 <ul>
-<li><strong>阶段零</strong>：对于每一个向量X，分别乘上三个系数<span class="arithmatex">\(W^Q,W^K,W^V\)</span>,，得到的Q，K和V分别表示Query，Key和Value</li>
+<li><strong>阶段零</strong>：对于每一个向量X，分别乘上三个系数<span class="arithmatex">\(W^Q,W^K,W^V\)</span>,得到的Q，K和V分别表示Query，Key和Value</li>
 </ul>
+<p>这里<span class="arithmatex">\(W^Q,W^K,W^V\)</span>的作用是把Embedding Space中的向量X（维数很高）映射的Q/K/V空间中（Q/K空间维数较低，V空间维数相同），降低向量的维数，从而实现信息的提取。在GPT3中，Embedding Space和V Space的维数是12280，Q/K Space维数是128。</p>
+<p>为了降低<span class="arithmatex">\(W^V\)</span>的参数数量（本来是12280*12280），实际上会把它拆分成两个小矩阵的乘积。</p>
 <h3 id="multi-head-attention">多头注意力机制 Multi-Head Attention</h3>
+<p>​   在单个自注意力机制中，模型可能只能关注输入数据的一种模式或关系。多头注意力通过并行地使用多个自注意力头，允许模型同时关注输入数据的不同方面或特征，每个头可以从不同的子空间学习信息。将独立训练的多组自注意力机制得到的结果，拼接、组合、降维后得到一个新的结果。</p>
+<h3 id="crossattention">交叉注意力机制 CrossAttention</h3>
+<p>​   交叉注意力机制允许一个模型在处理一个数据源（如图像）时，能够利用来自另一数据源（如文本）的信息，从而实现不同数据源之间的信息融合。在多模态任务中，如图文匹配、视频问答等，交叉注意力使模型能够在一个模态上下文中理解和引用另一个模态的信息，进而实现更深层次的理解和更准确的决策。</p>
+<p>​   在Transformer中，Cross Attention是指编码器和解码器之间的交叉注意力层。</p>
+<p><img src="../../imgs/image-20240909223017066.png" alt="image-20240909223017066" style="zoom:50%;" /></p>
+<h4 id="_5">计算过程</h4>
+<ul>
+<li>
+<p>编码器输入（通常是来自编码器的输出）：它们通常被表示为enc_inputs，大小为(batch_size, seq_len_enc, hidden_dim)。</p>
+</li>
+<li>
+<p>解码器的输入（已生成的部分序列）：它们通常被表示为dec_inputs，大小为(batch_size, seq_len_dec, hidden_dim)。</p>
+</li>
+<li>
+<p>解码器的每个位置会生成一个查询向量（query），用来在编码器的所有位置进行注意力权重计算。</p>
+</li>
+<li>
+<p>编码器的所有位置会生成一组键向量（keys）和值向量（values）。</p>
+</li>
+<li>
+<p>使用查询向量（query）和键向量（keys）进行点积操作，并通过softmax函数获得注意力权重。</p>
+</li>
+<li>
+<p>注意力权重与值向量相乘，并对结果进行求和，得到编码器调整的输出。</p>
+</li>
+</ul>
+<p><img src="../../imgs/c45e411ddf0643ec959805b26c0a48ce.png" alt="image.png" style="zoom: 50%;" /></p>
 
 
 </section>
