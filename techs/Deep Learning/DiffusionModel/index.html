@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>Tensor - JOYXDOCS</title>
+        <title>Diffusion Model - JOYXDOCS</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="./" class="dropdown-item active">Tensor</a>
+    <a href="../../pytorch/tensor/" class="dropdown-item">Tensor</a>
 </li>
     </ul>
   </li>
@@ -62,19 +62,19 @@
     <ul class="dropdown-menu">
             
 <li>
-    <a href="../../Deep%20Learning/Nets/" class="dropdown-item">网络结构</a>
+    <a href="../Nets/" class="dropdown-item">网络结构</a>
 </li>
             
 <li>
-    <a href="../../Deep%20Learning/%E5%9F%BA%E4%BA%8E%E6%BD%9C%E5%9C%A8%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90/" class="dropdown-item">基于潜在扩散模型的图像合成</a>
+    <a href="../%E5%9F%BA%E4%BA%8E%E6%BD%9C%E5%9C%A8%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90/" class="dropdown-item">基于潜在扩散模型的图像合成</a>
 </li>
             
 <li>
-    <a href="../../Deep%20Learning/Transformer/" class="dropdown-item">Transformer</a>
+    <a href="../Transformer/" class="dropdown-item">Transformer</a>
 </li>
             
 <li>
-    <a href="../../Deep%20Learning/DiffusionModel/" class="dropdown-item">Diffusion Model</a>
+    <a href="./" class="dropdown-item active">Diffusion Model</a>
 </li>
     </ul>
   </li>
@@ -116,17 +116,17 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../web_development/css/" class="nav-link">
+                                <a rel="prev" href="../Transformer/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../Deep%20Learning/Nets/" class="nav-link">
+                                <a rel="next" href="../../../other/academic_writing/L1/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://github.com/OOOYX/JOYXDOCS.git/edit/master/docs/techs/pytorch/tensor.md" class="nav-link">Edit on OOOYX/JOYXDOCS
+                                <a href="https://github.com/OOOYX/JOYXDOCS.git/edit/master/docs/techs/Deep Learning/DiffusionModel.md" class="nav-link">Edit on OOOYX/JOYXDOCS
                                     </a>
                             </li>
                     </ul>
@@ -147,18 +147,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#tensor" class="nav-link">Tensor</a>
+            <li class="nav-item" data-level="1"><a href="#diffusion-model" class="nav-link">Diffusion Model</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">前向阶段</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="2"><a href="#gpu" class="nav-link">GPU</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#torchnn" class="nav-link">神经网络—torch.nn库</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -166,190 +160,17 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="tensor">Tensor</h2>
-<h3 id="_1">创建张量</h3>
-<ul>
-<li>torch.ones </li>
-<li>torch.empty</li>
-<li>torch.zeros</li>
-<li>torch.tensor 已有数据创建</li>
-</ul>
-<pre><code class="language-python"># 创建一个tensor，并设置requires_grad=True以跟踪计算历史  
-x = torch.ones(2, 2, requires_grad=True)  
-</code></pre>
-<h3 id="_2">梯度</h3>
-<p>张量的梯度是一个与张量形状相同的张量，表示损失函数（或标量目标函数）对该张量的每个元素的偏导数。梯度是反向传播算法的核心部分，用于更新模型参数以优化（通常是最小化）损失函数。</p>
-<pre><code class="language-python">import torch
-
-# 创建一个张量，并设置 requires_grad=True 以跟踪计算历史
-x = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
-
-# 定义一个简单的函数 y = 3 * x^2
-y = 3 * x ** 2
-
-# 将 y 归约为标量，例如通过求和
-z = y.sum()
-
-# 计算 z 对 x 的梯度
-z.backward()
-
-# 输出 x 的梯度
-print(x.grad)  # 输出: tensor([ 6.0000, 12.0000, 18.0000])
-</code></pre>
-<p>这一段代码中<code>z.backward()</code>方法的作用是计算标量 <code>z</code> 对张量 <code>x</code> 的梯度。具体来说，它会通过自动微分机制，在计算图上执行反向传播，计算损失函数（在这里是标量 <code>z</code>）对每个叶子张量（在这里是 <code>x</code>）的偏导数，并将这些偏导数存储在相应张量的 <code>.grad</code> 属性中。</p>
-<h3 id="backward">.backward()方法</h3>
-<pre><code class="language-python">out.backward(torch.tensor([0.1,1.0,1.0]),dtype=float)
-</code></pre>
-<p>如果<code>out</code>不是一个标量，那么在调用<code>.backward()</code>时需要传入一个与<code>out</code>同形的权重向量进行相乘。</p>
-<h2 id="gpu">GPU</h2>
-<ul>
-<li><code>torch.cuda.is_available()</code>检查GPU是否可用</li>
-</ul>
-<pre><code class="language-python"># 创建一个tensor  
-x = torch.tensor([1.0, 2.0])  
-
-# 移动tensor到GPU上  
-if torch.cuda.is_available():  
-    x = x.to('cuda')  
-</code></pre>
-<pre><code class="language-python"># 直接在GPU上创建tensor  
-if torch.cuda.is_available():  
-    x = torch.tensor([1.0, 2.0], device='cuda')  
-</code></pre>
-<pre><code class="language-python"># 创建一个简单的模型  
-model = torch.nn.Linear(10, 1)  
-
-# 创建一些数据  
-data = torch.randn(100, 10)  
-
-# 移动模型和数据到GPU  
-if torch.cuda.is_available():  
-    model = model.to('cuda')  
-    data = data.to('cuda')  
-</code></pre>
-<h2 id="torchnn">神经网络—torch.nn库</h2>
-<p>troch.nn库是用于构建神经网络的工具库</p>
-<h3 id="_3">主要组件</h3>
-<h4 id="1-layers">1. <strong>神经网络层（Layers）</strong></h4>
-<p><code>torch.nn</code> 提供了多种常用的神经网络层，例如：</p>
-<ul>
-<li><strong>线性层（全连接层）</strong>：</li>
-</ul>
-<p><code>torch.nn.Linear(in_features, out_features, bias=True)</code></p>
-<ul>
-<li><strong>卷积层</strong>：</li>
-</ul>
-<p><code>torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True)</code></p>
-<ul>
-<li><strong>池化层</strong>：</li>
-</ul>
-<p><code>torch.nn.MaxPool2d(kernel_size, stride=None, padding=0)</code></p>
-<ul>
-<li><strong>批归一化层</strong>：</li>
-</ul>
-<p><code>torch.nn.BatchNorm2d(num_features)</code></p>
-<ul>
-<li><strong>激活函数</strong>：</li>
-</ul>
-<p><code>torch.nn.ReLU(inplace=False)</code></p>
-<h4 id="2-loss-functions">2. <strong>损失函数（Loss Functions）</strong></h4>
-<p><code>torch.nn</code> 提供了多种损失函数，用于衡量模型预测值和真实值之间的差异，例如：</p>
-<ul>
-<li><strong>均方误差损失</strong>：</li>
-</ul>
-<p><code>torch.nn.MSELoss()</code></p>
-<ul>
-<li><strong>交叉熵损失</strong>：</li>
-</ul>
-<p><code>torch.nn.CrossEntropyLoss()</code></p>
-<ul>
-<li><strong>二分类交叉熵损失</strong>：</li>
-</ul>
-<p><code>torch.nn.BCELoss()</code></p>
-<h4 id="3-containers">3. <strong>容器（Containers）</strong></h4>
-<p>容器用于将多个层组合在一起，形成一个更大的模型。例如：</p>
-<ul>
-<li><strong>顺序容器（Sequential）</strong>：</li>
-</ul>
-<p><code>torch.nn.Sequential(*args)</code></p>
-<ul>
-<li><strong>模块列表（ModuleList）</strong>：</li>
-</ul>
-<p><code>torch.nn.ModuleList(modules=None)</code></p>
-<ul>
-<li><strong>模块字典（ModuleDict）</strong>：</li>
-</ul>
-<p><code>torch.nn.ModuleDict(modules=None)</code></p>
-<h4 id="4-custom-modules">4. <strong>自定义模块（Custom Modules）</strong></h4>
-<p>通过继承 <code>torch.nn.Module</code>，可以定义自己的神经网络模块：</p>
-<pre><code>import torch.nn as nn
-
-class MyModel(nn.Module):
-    def __init__(self):
-        super(MyModel, self).__init__()
-        self.layer1 = nn.Linear(10, 20)
-        self.layer2 = nn.Linear(20, 10)
-
-    def forward(self, x):
-        x = self.layer1(x)
-        x = nn.ReLU()(x)
-        x = self.layer2(x)
-        return x
-</code></pre>
-<h4 id="5-initialization">5. <strong>参数初始化（Initialization）</strong></h4>
-<p><code>torch.nn.init</code> 子模块提供了一些常见的参数初始化方法：</p>
-<pre><code>import torch.nn.init as init
-
-# 初始化权重为均匀分布
-init.uniform_(tensor, a=0.0, b=1.0)
-
-# 初始化权重为正态分布
-init.normal_(tensor, mean=0.0, std=1.0)
-</code></pre>
-<h3 id="_4">典型使用流程</h3>
-<p>以下是一个典型的使用 <code>torch.nn</code> 构建和训练神经网络的示例：</p>
-<pre><code>import torch
-import torch.nn as nn
-import torch.optim as optim
-
-# 定义模型
-class SimpleModel(nn.Module):
-    def __init__(self):
-        super(SimpleModel, self).__init__()
-        self.fc1 = nn.Linear(10, 50)
-        self.fc2 = nn.Linear(50, 1)
-
-    def forward(self, x):
-        x = torch.relu(self.fc1(x))
-        x = self.fc2(x)
-        return x
-
-# 实例化模型
-model = SimpleModel()
-
-# 定义损失函数和优化器
-criterion = nn.MSELoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01)
-
-# 生成一些示例数据
-inputs = torch.randn(32, 10)
-targets = torch.randn(32, 1)
-
-# 训练循环
-for epoch in range(100):
-    # 前向传播
-    outputs = model(inputs)
-    loss = criterion(outputs, targets)
-
-    # 反向传播和优化
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
-
-    print(f'Epoch [{epoch+1}/100], Loss: {loss.item():.4f}')
-</code></pre>
-<h3 id="_5">总结</h3>
-<p><code>torch.nn</code> 是 PyTorch 中一个功能强大的模块，提供了构建、训练和评估神经网络所需的各种工具。通过结合使用不同的层、损失函数和优化器，你可以构建和训练各种复杂的深度学习模型。理解 <code>torch.nn</code> 的各个组件及其用途是掌握 PyTorch 的关键。</p></div>
+<h1 id="diffusion-model">Diffusion Model</h1>
+<blockquote>
+<p>参考链接：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/576475987?utm_id=0">扩散模型 (Diffusion Model) 简要介绍与源码分析 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>Diffusion Model在前向阶段对图像逐步施加噪声, 直至图像被破坏成完全的高斯噪声, 然后在逆向阶段学习从高斯噪声还原为原始图像。</p>
+<p><img alt="img" src="../../../imgs/v2-4ebd2e03988bdd3642bdf277ebd0e01a_1440w.webp" /></p>
+<p><center>前向阶段</center></p>
+<p><img alt="img" src="../../../imgs/v2-4a5b8348ab7d6e062b9bfc2aebfc9ece_1440w.webp" /></p>
+<p><center>逆向阶段</center></p>
+<h2 id="_1">前向阶段</h2></div>
             </div>
         </div>
 
