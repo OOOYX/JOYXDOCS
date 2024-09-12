@@ -181,71 +181,77 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="tensor">Tensor</h2>
-<h3 id="_1">创建张量</h3>
+<h2 id="tensor">Tensor<a class="headerlink" href="#tensor" title="Permanent link">&para;</a></h2>
+<h3 id="_1">创建张量<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>torch.ones </li>
 <li>torch.empty</li>
 <li>torch.zeros</li>
 <li>torch.tensor 用已有数据创建</li>
 </ul>
-<pre><code class="language-python"># 创建一个tensor，并设置requires_grad=True以跟踪计算历史  
-x = torch.ones(2, 2, requires_grad=True)  
-</code></pre>
-<h3 id="_2">梯度</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 创建一个tensor，并设置requires_grad=True以跟踪计算历史  </span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</code></pre></div>
+
+<h3 id="_2">梯度<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>张量的梯度是一个与张量形状相同的张量，表示损失函数（或标量目标函数）对该张量的每个元素的偏导数。梯度是反向传播算法的核心部分，用于更新模型参数以优化（通常是最小化）损失函数。</p>
-<pre><code class="language-python">import torch
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 
-# 创建一个张量，并设置 requires_grad=True 以跟踪计算历史
-x = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
+<span class="c1"># 创建一个张量，并设置 requires_grad=True 以跟踪计算历史</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-# 定义一个简单的函数 y = 3 * x^2
-y = 3 * x ** 2
+<span class="c1"># 定义一个简单的函数 y = 3 * x^2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
 
-# 将 y 归约为标量，例如通过求和
-z = y.sum()
+<span class="c1"># 将 y 归约为标量，例如通过求和</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-# 计算 z 对 x 的梯度
-z.backward()
+<span class="c1"># 计算 z 对 x 的梯度</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-# 输出 x 的梯度
-print(x.grad)  # 输出: tensor([ 6.0000, 12.0000, 18.0000])
-</code></pre>
+<span class="c1"># 输出 x 的梯度</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>  <span class="c1"># 输出: tensor([ 6.0000, 12.0000, 18.0000])</span>
+</code></pre></div>
+
 <p>这一段代码中<code>z.backward()</code>方法的作用是计算标量 <code>z</code> 对张量 <code>x</code> 的梯度。具体来说，它会通过自动微分机制，在计算图上执行反向传播，计算损失函数（在这里是标量 <code>z</code>）对每个叶子张量（在这里是 <code>x</code>）的偏导数，并将这些偏导数存储在相应张量的 <code>.grad</code> 属性中。</p>
-<h3 id="backward">.backward()方法</h3>
-<pre><code class="language-python">out.backward(torch.tensor([0.1,1.0,1.0]),dtype=float)
-</code></pre>
+<h3 id="backward">.backward()方法<a class="headerlink" href="#backward" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</code></pre></div>
+
 <p>如果<code>out</code>不是一个标量，那么在调用<code>.backward()</code>时需要传入一个与<code>out</code>同形的权重向量进行相乘。</p>
-<h2 id="gpu">GPU</h2>
+<h2 id="gpu">GPU<a class="headerlink" href="#gpu" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>torch.cuda.is_available()</code>检查GPU是否可用</li>
 </ul>
-<pre><code class="language-python"># 创建一个tensor  
-x = torch.tensor([1.0, 2.0])  
+<div class="codehilite"><pre><span></span><code><span class="c1"># 创建一个tensor  </span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>  
 
-# 移动tensor到GPU上  
-if torch.cuda.is_available():  
-    x = x.to('cuda')  
-</code></pre>
-<pre><code class="language-python"># 直接在GPU上创建tensor  
-if torch.cuda.is_available():  
-    x = torch.tensor([1.0, 2.0], device='cuda')  
-</code></pre>
-<pre><code class="language-python"># 创建一个简单的模型  
-model = torch.nn.Linear(10, 1)  
+<span class="c1"># 移动tensor到GPU上  </span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>  
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>  
+</code></pre></div>
 
-# 创建一些数据  
-data = torch.randn(100, 10)  
+<div class="codehilite"><pre><span></span><code><span class="c1"># 直接在GPU上创建tensor  </span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>  
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>  
+</code></pre></div>
 
-# 移动模型和数据到GPU  
-if torch.cuda.is_available():  
-    model = model.to('cuda')  
-    data = data.to('cuda')  
-</code></pre>
-<h2 id="torchnn">神经网络—torch.nn库</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 创建一个简单的模型  </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  
+
+<span class="c1"># 创建一些数据  </span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  
+
+<span class="c1"># 移动模型和数据到GPU  </span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>  
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>  
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>  
+</code></pre></div>
+
+<h2 id="torchnn">神经网络—torch.nn库<a class="headerlink" href="#torchnn" title="Permanent link">&para;</a></h2>
 <p>troch.nn库是用于构建神经网络的工具库</p>
-<h3 id="_3">主要组件</h3>
-<h4 id="1-layers">1. <strong>神经网络层（Layers）</strong></h4>
+<h3 id="_3">主要组件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="1-layers">1. <strong>神经网络层（Layers）</strong><a class="headerlink" href="#1-layers" title="Permanent link">&para;</a></h4>
 <p><code>torch.nn</code> 提供了多种常用的神经网络层，例如：</p>
 <ul>
 <li><strong>线性层（全连接层）</strong>：</li>
@@ -267,7 +273,7 @@ if torch.cuda.is_available():
 <li><strong>激活函数</strong>：</li>
 </ul>
 <p><code>torch.nn.ReLU(inplace=False)</code></p>
-<h4 id="2-loss-functions">2. <strong>损失函数（Loss Functions）</strong></h4>
+<h4 id="2-loss-functions">2. <strong>损失函数（Loss Functions）</strong><a class="headerlink" href="#2-loss-functions" title="Permanent link">&para;</a></h4>
 <p><code>torch.nn</code> 提供了多种损失函数，用于衡量模型预测值和真实值之间的差异，例如：</p>
 <ul>
 <li><strong>均方误差损失</strong>：</li>
@@ -281,7 +287,7 @@ if torch.cuda.is_available():
 <li><strong>二分类交叉熵损失</strong>：</li>
 </ul>
 <p><code>torch.nn.BCELoss()</code></p>
-<h4 id="3-containers">3. <strong>容器（Containers）</strong></h4>
+<h4 id="3-containers">3. <strong>容器（Containers）</strong><a class="headerlink" href="#3-containers" title="Permanent link">&para;</a></h4>
 <p>容器用于将多个层组合在一起，形成一个更大的模型。例如：</p>
 <ul>
 <li><strong>顺序容器（Sequential）</strong>：</li>
@@ -295,75 +301,78 @@ if torch.cuda.is_available():
 <li><strong>模块字典（ModuleDict）</strong>：</li>
 </ul>
 <p><code>torch.nn.ModuleDict(modules=None)</code></p>
-<h4 id="4-custom-modules">4. <strong>自定义模块（Custom Modules）</strong></h4>
+<h4 id="4-custom-modules">4. <strong>自定义模块（Custom Modules）</strong><a class="headerlink" href="#4-custom-modules" title="Permanent link">&para;</a></h4>
 <p>通过继承 <code>torch.nn.Module</code>，可以定义自己的神经网络模块：</p>
-<pre><code>import torch.nn as nn
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
-class MyModel(nn.Module):
-    def __init__(self):
-        super(MyModel, self).__init__()
-        self.layer1 = nn.Linear(10, 20)
-        self.layer2 = nn.Linear(20, 10)
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-    def forward(self, x):
-        x = self.layer1(x)
-        x = nn.ReLU()(x)
-        x = self.layer2(x)
-        return x
-</code></pre>
-<h4 id="5-initialization">5. <strong>参数初始化（Initialization）</strong></h4>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</code></pre></div>
+
+<h4 id="5-initialization">5. <strong>参数初始化（Initialization）</strong><a class="headerlink" href="#5-initialization" title="Permanent link">&para;</a></h4>
 <p><code>torch.nn.init</code> 子模块提供了一些常见的参数初始化方法：</p>
-<pre><code>import torch.nn.init as init
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.nn.init</span> <span class="k">as</span> <span class="nn">init</span>
 
-# 初始化权重为均匀分布
-init.uniform_(tensor, a=0.0, b=1.0)
+<span class="c1"># 初始化权重为均匀分布</span>
+<span class="n">init</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
-# 初始化权重为正态分布
-init.normal_(tensor, mean=0.0, std=1.0)
-</code></pre>
-<h3 id="_4">典型使用流程</h3>
+<span class="c1"># 初始化权重为正态分布</span>
+<span class="n">init</span><span class="o">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_4">典型使用流程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>以下是一个典型的使用 <code>torch.nn</code> 构建和训练神经网络的示例：</p>
-<pre><code>import torch
-import torch.nn as nn
-import torch.optim as optim
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 
-# 定义模型
-class SimpleModel(nn.Module):
-    def __init__(self):
-        super(SimpleModel, self).__init__()
-        self.fc1 = nn.Linear(10, 50)
-        self.fc2 = nn.Linear(50, 1)
+<span class="c1"># 定义模型</span>
+<span class="k">class</span> <span class="nc">SimpleModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SimpleModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    def forward(self, x):
-        x = torch.relu(self.fc1(x))
-        x = self.fc2(x)
-        return x
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
 
-# 实例化模型
-model = SimpleModel()
+<span class="c1"># 实例化模型</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SimpleModel</span><span class="p">()</span>
 
-# 定义损失函数和优化器
-criterion = nn.MSELoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01)
+<span class="c1"># 定义损失函数和优化器</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
-# 生成一些示例数据
-inputs = torch.randn(32, 10)
-targets = torch.randn(32, 1)
+<span class="c1"># 生成一些示例数据</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-# 训练循环
-for epoch in range(100):
-    # 前向传播
-    outputs = model(inputs)
-    loss = criterion(outputs, targets)
+<span class="c1"># 训练循环</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># 前向传播</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
 
-    # 反向传播和优化
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
+    <span class="c1"># 反向传播和优化</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
-    print(f'Epoch [{epoch+1}/100], Loss: {loss.item():.4f}')
-</code></pre>
-<h3 id="_5">总结</h3>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch [</span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/100], Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_5">总结<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p><code>torch.nn</code> 是 PyTorch 中一个功能强大的模块，提供了构建、训练和评估神经网络所需的各种工具。通过结合使用不同的层、损失函数和优化器，你可以构建和训练各种复杂的深度学习模型。理解 <code>torch.nn</code> 的各个组件及其用途是掌握 PyTorch 的关键。</p></div>
             </div>
         </div>
@@ -379,8 +388,7 @@ for epoch in range(100):
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../../js/base.js"></script>
-        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-        <script src="../../../_js/configure-mathjax.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

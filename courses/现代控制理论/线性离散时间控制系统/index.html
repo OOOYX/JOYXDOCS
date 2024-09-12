@@ -189,32 +189,36 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="_1">章节要求</h2>
+<h2 id="_1">章节要求<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><img alt="image-20240911082217284" src="../../../imgs/image-20240911082217284.png" /></p>
 <p><img alt="image-20240911082231825" src="../../../imgs/image-20240911082231825.png" /></p>
-<h1 id="_2">概念</h1>
+<h1 id="_2">概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p><strong>连续系统</strong>中所有环节的<strong>信号</strong>均为时间变量的连续函数。换言之，这些信号在全部时间上都是已知的。</p>
 <p><strong>采样系统</strong>是对来自传感器的<strong>连续</strong>信息在某些规定的时间<strong>瞬时</strong>上进行取值。</p>
 <p><strong>数字控制系统</strong>是一种以<strong>数字计算机</strong>为<strong>控制器</strong>去控制具有<strong>连续工作状态</strong>的<strong>被控对象</strong>的闭环控制系统。</p>
 <p><strong>模拟信号</strong>是<strong>时间</strong>和<strong>幅值</strong>上都<strong>连续</strong>的信号。</p>
 <p><strong>脉冲信号</strong>是时间上离散而幅值上连续的信号。</p>
 <p><strong>保持器</strong>接收脉冲信号输入，将其复原为连续阶梯信号。采样频率很高时，复原信号接近原始信号。</p>
-<h2 id="_3">系统参数</h2>
+<h2 id="_3">系统参数<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>采样周期 T</p>
 <p>采样持续时间  <span class="arithmatex">\(\tau\)</span></p>
 <p>采样频率 <span class="arithmatex">\(f_s=\frac{1}{T}\)</span></p>
 <p>采样角频率 <span class="arithmatex">\(\omega_s=2\pi f_s=\frac{2\pi}{T}\)</span></p>
-<h1 id="z">Z变换</h1>
-<h2 id="z_1">Z反变换的求解方法</h2>
-<h3 id="1">1. 长除法</h3>
+<h1 id="z">Z变换<a class="headerlink" href="#z" title="Permanent link">&para;</a></h1>
+<h2 id="z_1">Z反变换的求解方法<a class="headerlink" href="#z_1" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 长除法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>参考<a href="https://zhuanlan.zhihu.com/p/194103970">z反变换-长除法 - 知乎 (zhihu.com)</a></p>
 </blockquote>
 <p>对如<span class="arithmatex">\(\frac{z^2+z}{z^2-2z+1}\)</span>这样的式子，分子分母最高次相同，可以直接使用长除法。</p>
-<p><img src="../../imgs/image-20240912093122535.png" alt="image-20240912093122535" style="zoom:67%;" /></p>
+<p><img alt="image-20240912093122535" src="../../../imgs/image-20240912093122535.png" /></p>
 <p>对如<span class="arithmatex">\(\frac{10z}{(z-1)(z-3)}\)</span>这样的式子，分子分母次数不同，可以用<span class="arithmatex">\(\frac{1}{z}\)</span>的长除法。</p>
-<p><img src="../../imgs/image-20240912093336715.png" alt="image-20240912093336715" style="zoom:67%;" /></p>
-<h3 id="2">2. 部分分式法</h3></div>
+<p><img alt="image-20240912093336715" src="../../../imgs/image-20240912093336715.png" /></p>
+<h3 id="2">2. 部分分式法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>将目标序列分解转换成常用z变换对。</p>
+<h3 id="3">3. 留数法<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>对于序列<span class="arithmatex">\(X(z)=\frac{N(z)}{(z-p_1)\cdots(z-p_n)}\)</span></p>
+<p>可以用留数法求其z反变换：<span class="arithmatex">\(x(n)=\Sigma Res[X(z)z^{n-1}]_{z=p_k}\)</span></p></div>
             </div>
         </div>
 
@@ -229,8 +233,7 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../../js/base.js"></script>
-        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-        <script src="../../../_js/configure-mathjax.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

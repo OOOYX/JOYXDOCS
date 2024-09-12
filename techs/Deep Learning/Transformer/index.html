@@ -179,12 +179,12 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="transformer">Transformer</h1>
+<h1 id="transformer">Transformer<a class="headerlink" href="#transformer" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>参考链接：</p>
 <p><a href="https://blog.csdn.net/weixin_43334693/article/details/130250571?spm=1001.2014.3001.5501">【Transformer系列（4）】Transformer模型结构超详细解读_transformer结构-CSDN博客</a></p>
 </blockquote>
-<h2 id="_1">结构</h2>
+<h2 id="_1">结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><img alt="img" src="../../../imgs/1cf0950703fa5a5a157015b52295a942.png" /></p>
 <p>Transformer模型可以分为这两个部分：</p>
 <p><strong>1. Encoder</strong>：上图左边部分，其中又有三个部分，<strong>输入、多头注意力机制、前馈神经网络</strong></p>
@@ -216,8 +216,8 @@
 <p><strong>Softmax层</strong>：把分数变成概率（都为正数、上限1.0）。概率最高的单元格被选中，并且它对应的单词被作为这个时间的输出。</p>
 </li>
 </ul>
-<h2 id="_2">注意力机制</h2>
-<h3 id="_3">核心概念</h3>
+<h2 id="_2">注意力机制<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">核心概念<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>输入：Q（query，查询），K（key，键），V（value，值） </p>
 <p>输出：Attention Value</p>
 <ul>
@@ -226,14 +226,14 @@
 <li><strong>值（Value）</strong>：代表物体本身的向量，通常和Key成对出现。类似具体的商品</li>
 <li><strong>Attention Value</strong>：表示模型关注输入数据中哪些部分的结果</li>
 </ul>
-<h3 id="_4">计算过程</h3>
+<h3 id="_4">计算过程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p><img alt="img" src="../../../imgs/d019a10f52f95145798e2659d6ed7cb6.png" /></p>
 <ul>
 <li><strong>阶段一</strong>：根据输入的Query和Key计算两者之间的相关性或相似性，得到注意力得分（s1,s2,s3,s4）。可以使用不同的方法（即图中的F（Q，K）），例如点积、余弦相似度、MLP网络。</li>
 <li><strong>阶段二</strong>：对注意力得分进行缩放scale（除以维度的根号），再softmax函数，一方面可以进行归一化，将原始计算分值整理成所有元素权重之和为1的概率分布；另一方面也可以通过softmax的内在机制更加突出重要元素的权重。得到权重系数（a1,a2,a3,a4），这些权重表示查询与每个键的相关性，权重系数越高，说明K越符合要求的Q，则与K对应的V要占更大比重。</li>
 <li><strong>阶段三</strong>：根据权重系数对Value值进行加权求和，得到Attention Value（此时的V是具有一些注意力信息的，更重要的信息更关注，不重要的信息被忽视了）</li>
 </ul>
-<h3 id="self-attention">自注意力机制 Self-Attention</h3>
+<h3 id="self-attention">自注意力机制 Self-Attention<a class="headerlink" href="#self-attention" title="Permanent link">&para;</a></h3>
 <p>​   自注意力机制想要解决的问题场景是神经网络接收的输入是很多大小不一的向量，并且不同向量向量之间有一定的关系，但是实际训练的时候无法充分发挥这些输入之间的关系而导致模型训练结果效果极差。比如机器翻译(序列到序列的问题，机器自己决定多少个标签)，词性标注(Pos tagging一个向量对应一个标签)，语义分析(多个向量对应一个标签)等文字处理问题。</p>
 <p>​   自注意力机制的关键是<strong>Q、K、V来自同一个来源X</strong>。</p>
 <blockquote>
@@ -253,13 +253,13 @@
 </ul>
 <p>这里<span class="arithmatex">\(W^Q,W^K,W^V\)</span>的作用是把Embedding Space中的向量X（维数很高）映射的Q/K/V空间中（Q/K空间维数较低，V空间维数相同），降低向量的维数，从而实现信息的提取。在GPT3中，Embedding Space和V Space的维数是12280，Q/K Space维数是128。</p>
 <p>为了降低<span class="arithmatex">\(W^V\)</span>的参数数量（本来是12280*12280），实际上会把它拆分成两个小矩阵的乘积。</p>
-<h3 id="multi-head-attention">多头注意力机制 Multi-Head Attention</h3>
+<h3 id="multi-head-attention">多头注意力机制 Multi-Head Attention<a class="headerlink" href="#multi-head-attention" title="Permanent link">&para;</a></h3>
 <p>​   在单个自注意力机制中，模型可能只能关注输入数据的一种模式或关系。多头注意力通过并行地使用多个自注意力头，允许模型同时关注输入数据的不同方面或特征，每个头可以从不同的子空间学习信息。将独立训练的多组自注意力机制得到的结果，拼接、组合、降维后得到一个新的结果。</p>
-<h3 id="crossattention">交叉注意力机制 CrossAttention</h3>
+<h3 id="crossattention">交叉注意力机制 CrossAttention<a class="headerlink" href="#crossattention" title="Permanent link">&para;</a></h3>
 <p>​   交叉注意力机制允许一个模型在处理一个数据源（如图像）时，能够利用来自另一数据源（如文本）的信息，从而实现不同数据源之间的信息融合。在多模态任务中，如图文匹配、视频问答等，交叉注意力使模型能够在一个模态上下文中理解和引用另一个模态的信息，进而实现更深层次的理解和更准确的决策。</p>
 <p>​   在Transformer中，Cross Attention是指编码器和解码器之间的交叉注意力层。</p>
 <p><img alt="image-20240909223017066" src="../../../imgs/image-20240909223017066.png" /></p>
-<h4 id="_5">计算过程</h4>
+<h4 id="_5">计算过程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li>
 <p>编码器输入（通常是来自编码器的输出）：它们通常被表示为enc_inputs，大小为(batch_size, seq_len_enc, hidden_dim)。</p>
@@ -295,8 +295,7 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../../js/base.js"></script>
-        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-        <script src="../../../_js/configure-mathjax.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

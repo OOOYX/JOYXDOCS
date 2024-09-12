@@ -179,7 +179,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="_1">扩散模型</h1>
+<h1 id="_1">扩散模型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>本篇内容基于论文High-Resolution Image Synthesis with Latent Diffusion Models，Robin Rombach，Andreas Blattmann，Dominik Lorenz，Patrick Esser，Bjorn Ommer</p>
 <p>[<a href="https://www.semanticscholar.org/paper/High-Resolution-Image-Synthesis-with-Latent-Models-Rombach-Blattmann/c10075b3746a9f3dd5811970e93c8ca3ad39b39d">PDF] High-Resolution Image Synthesis with Latent Diffusion Models | Semantic Scholar</a></p>
@@ -192,9 +192,9 @@
 <li><strong>Semantic Compression 语义压缩阶段</strong>：实际的生成模型学习数据的语义和概念组成</li>
 </ol>
 <p>我们的目标是找一个<strong>感知上等效但计算上更合适的位置</strong>（即接近转折点处），在这个位置训练用于高分辨率图像合成的扩散模型。</p>
-<h2 id="_2">模型原理</h2>
+<h2 id="_2">模型原理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><img alt="image-20240817024652851" src="../../../imgs/image-20240817024652851.png" /></p>
-<h3 id="perceptual-image-compression">Perceptual Image Compression 感知图像压缩</h3>
+<h3 id="perceptual-image-compression">Perceptual Image Compression 感知图像压缩<a class="headerlink" href="#perceptual-image-compression" title="Permanent link">&para;</a></h3>
 <ul>
 <li>编码器<span class="arithmatex">\(\epsilon\)</span>：<span class="arithmatex">\(z = \epsilon(x)\)</span>, 其中 <span class="arithmatex">\(x\in \mathbb{R}^{H\times W\times 3}\)</span>为图像的RGB向量表示, <span class="arithmatex">\(z\in \mathbb{R}^{h\times w\times c}\)</span></li>
 <li>
@@ -214,7 +214,7 @@
 <li><span class="arithmatex">\(\|\epsilon - \epsilon_{\theta}(x(t), t)\|^2\)</span>表示平方欧几里得距离，用于衡量模型预测的噪声与真实噪声之间的差异</li>
 </ul>
 <p>这个损失函数的目标是最小化模型预测的噪声和真实噪声之间的差异。通过这种方式，模型学习如何逆转扩散过程，即从噪声数据 <span class="arithmatex">\( x(t) \)</span> 重构出原始数据 <span class="arithmatex">\( x \)</span>。这是通过优化模型参数 <span class="arithmatex">\( $\theta$ \)</span> 来实现的，使得预测的噪声尽可能接近实际添加到数据中的噪声。</p>
-<h3 id="conditioning-mechanism">Conditioning Mechanism 调节机制</h3>
+<h3 id="conditioning-mechanism">Conditioning Mechanism 调节机制<a class="headerlink" href="#conditioning-mechanism" title="Permanent link">&para;</a></h3>
 <p>通过结合扩散模型（DMs）和其他类型的条件输入，可以提高生成模型处理不同任务的能力。调节机制增强了U-Net基础架构，并引入了注意力机制。</p>
 <p><img alt="屏幕截图 2024-08-17 024326" src="../../../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-17%20024342.png" /></p>
 <p>Q，K，V是注意力机制的三个基本组成部分，这使模型能够基于输入的不同特征（由K和V表示）对信息（由Q查询）进行加权和整合。</p>
@@ -229,8 +229,8 @@
 </ul>
 <p>据此可以把公式（2）扩展到公式（3），引入条件<span class="arithmatex">\(\tau_{\theta}(y)\)</span></p>
 <p><img alt="屏幕截图 2024-08-17 024359" src="../../../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-17%20024359.png" /></p>
-<h2 id="_3">实验</h2>
-<h3 id="1-f">1. 在感知压缩中调整下采样因数f</h3>
+<h2 id="_3">实验<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1-f">1. 在感知压缩中调整下采样因数f<a class="headerlink" href="#1-f" title="Permanent link">&para;</a></h3>
 <p>分析下面的训练数据图发现：</p>
 <ol>
 <li>LDM-{1,2} 的小下采样因子会导致训练进度缓慢</li>
@@ -245,7 +245,7 @@
 <li>将大部分感知压缩留给扩散模型</li>
 <li>第一阶段压缩过强导致信息丢失，从而限制了可实现的质量</li>
 </ol>
-<h3 id="2-ldm">2. 使用LDM进行图像生成</h3>
+<h3 id="2-ldm">2. 使用LDM进行图像生成<a class="headerlink" href="#2-ldm" title="Permanent link">&para;</a></h3>
 <script>
 MathJax = {
   tex: {
@@ -270,8 +270,7 @@ MathJax = {
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../../js/base.js"></script>
-        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-        <script src="../../../_js/configure-mathjax.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
