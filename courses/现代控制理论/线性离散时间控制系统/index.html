@@ -176,6 +176,19 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="1"><a href="#_4" class="nav-link">信号采样与保持</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">采样</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">保持（恢复）</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="1"><a href="#z" class="nav-link">Z变换</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#z_1" class="nav-link">Z反变换的求解方法</a>
@@ -204,6 +217,20 @@
 <p>采样持续时间  <span class="arithmatex">\(\tau\)</span></p>
 <p>采样频率 <span class="arithmatex">\(f_s=\frac{1}{T}\)</span></p>
 <p>采样角频率 <span class="arithmatex">\(\omega_s=2\pi f_s=\frac{2\pi}{T}\)</span></p>
+<h1 id="_4">信号采样与保持<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<h2 id="_5">采样<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20240913081325017" src="../../../imgs/image-20240913081325017.png" /></p>
+<p>连续信号 <span class="arithmatex">\(f(t)\)</span></p>
+<p>采样串 <span class="arithmatex">\(p(t)=1(t)-1(t-\tau)\)</span></p>
+<p>采样信号 <span class="arithmatex">\(f^*(t)=f(0)[1(t)-1(t-\tau)]+f(T)[1(t-T)-1(t-T-\tau)]+\cdots\)</span></p>
+<p>令<span class="arithmatex">\(\tau\)</span>趋于0，即 <span class="arithmatex">\(p(t)=\delta_T(t)=\sum\delta(t-kT)\)</span>，可视为理想采样开关</p>
+<p><span class="arithmatex">\(\delta(t)\)</span>为单位脉冲信号，满足 <span class="arithmatex">\(\int_{-\infty}^{\infty}\delta(t)dt=1\)</span></p>
+<p>采样公式：</p>
+<p><img alt="image-20240913082337511" src="../../../imgs/image-20240913082337511.png" /></p>
+<p>对采样信号的拉氏变换：</p>
+<p><img alt="image-20240913082414114" src="../../../imgs/image-20240913082414114.png" /></p>
+<h2 id="_6">保持（恢复）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p><strong>香农采样定理</strong>：离散信号能够<strong>不失真地</strong>恢复原有信号的条件是 <span class="arithmatex">\(\omega_s\geq2\omega_{max}\)</span>，<span class="arithmatex">\(\omega_{max}\)</span>为原始信号最高频率</p>
 <h1 id="z">Z变换<a class="headerlink" href="#z" title="Permanent link">&para;</a></h1>
 <h2 id="z_1">Z反变换的求解方法<a class="headerlink" href="#z_1" title="Permanent link">&para;</a></h2>
 <h3 id="1">1. 长除法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
