@@ -191,7 +191,11 @@
             
             <li class="nav-item" data-level="1"><a href="#z" class="nav-link">Z变换</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#z_1" class="nav-link">Z反变换的求解方法</a>
+            <li class="nav-item" data-level="2"><a href="#z_1" class="nav-link">Z变换的求解方法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#z_2" class="nav-link">Z反变换的求解方法</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -232,8 +236,16 @@
 <h2 id="_6">保持（恢复）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p><strong>香农采样定理</strong>：离散信号能够<strong>不失真地</strong>恢复原有信号的条件是 <span class="arithmatex">\(\omega_s\geq2\omega_{max}\)</span>，<span class="arithmatex">\(\omega_{max}\)</span>为原始信号最高频率</p>
 <h1 id="z">Z变换<a class="headerlink" href="#z" title="Permanent link">&para;</a></h1>
-<h2 id="z_1">Z反变换的求解方法<a class="headerlink" href="#z_1" title="Permanent link">&para;</a></h2>
-<h3 id="1">1. 长除法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>在<strong>采样拉氏变换</strong>中，取<span class="arithmatex">\(z=e^{sT}\)</span>的变量值换，将s的超越函数转换为z的幂级数或z的有理分式，得到<strong>z变换</strong></p>
+<p>即 <span class="arithmatex">\(F(z)=F^*(s)|_{s=\frac{1}{T}lnz}\)</span></p>
+<p>z变换的常用方法：<strong>定义法、直接查表法、部分分式法、留数法</strong></p>
+<h2 id="z_1">Z变换的求解方法<a class="headerlink" href="#z_1" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 定义法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(F(z)=f(0)+f(T)z^{-1}+f(2T)z^{-2}+\cdots=\sum\limits_{k=0}^{\infty}f(kT)z^{-k}\)</span></p>
+<h3 id="2">2. 部分分式法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>把<span class="arithmatex">\(f(t)\)</span>的拉氏变换<span class="arithmatex">\(F(s)\)</span>展成部分分式之和的形式，使每一部分分式对应简单的时间函数，<strong>其相应的Z变换已知</strong></p>
+<h2 id="z_2">Z反变换的求解方法<a class="headerlink" href="#z_2" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1. 长除法<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>参考<a href="https://zhuanlan.zhihu.com/p/194103970">z反变换-长除法 - 知乎 (zhihu.com)</a></p>
 </blockquote>
@@ -241,7 +253,7 @@
 <p><img alt="image-20240912093122535" src="../../../imgs/image-20240912093122535.png" /></p>
 <p>对如<span class="arithmatex">\(\frac{10z}{(z-1)(z-3)}\)</span>这样的式子，分子分母次数不同，可以用<span class="arithmatex">\(\frac{1}{z}\)</span>的长除法。</p>
 <p><img alt="image-20240912093336715" src="../../../imgs/image-20240912093336715.png" /></p>
-<h3 id="2">2. 部分分式法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<h3 id="2_1">2. 部分分式法<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
 <p>将目标序列分解转换成常用z变换对。</p>
 <h3 id="3">3. 留数法<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>对于序列<span class="arithmatex">\(X(z)=\frac{N(z)}{(z-p_1)\cdots(z-p_n)}\)</span></p>
