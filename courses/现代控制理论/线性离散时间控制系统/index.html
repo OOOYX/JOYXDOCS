@@ -199,6 +199,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#z_3" class="nav-link">z变换的性质</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#_10" class="nav-link">离散系统的数学模型</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_11" class="nav-link">线性差分方程</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_13" class="nav-link">脉冲传递函数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -257,7 +274,62 @@
 <p>将目标序列分解转换成常用z变换对。</p>
 <h3 id="3">3. 留数法<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>对于序列<span class="arithmatex">\(X(z)=\frac{N(z)}{(z-p_1)\cdots(z-p_n)}\)</span></p>
-<p>可以用留数法求其z反变换：<span class="arithmatex">\(x(n)=\Sigma Res[X(z)z^{n-1}]_{z=p_k}\)</span></p></div>
+<p>可以用留数法求其z反变换：<span class="arithmatex">\(x(n)=\Sigma Res[X(z)z^{n-1}]_{z=p_k}\)</span></p>
+<h2 id="z_3">z变换的性质<a class="headerlink" href="#z_3" title="Permanent link">&para;</a></h2>
+<h3 id="_7">移位定理<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ol>
+<li>向左移位  <span class="arithmatex">\(Z[f^*(t-pT)]=z^{-p}F(z)\)</span></li>
+<li>向右移位  <span class="arithmatex">\(Z[f^*(t+pT)]=z^{p}F(z)-\sum\limits_{i=0}^{p-1}f(iT)z^{p-i}\)</span></li>
+</ol>
+<h3 id="_8">初值定理<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>若<span class="arithmatex">\(\mathop{lim}\limits_{z\rightarrow\infty}F(z)\)</span>存在，则<span class="arithmatex">\(\mathop{lim}\limits_{k\rightarrow0}f(kT)=\mathop{lim}\limits_{z\rightarrow\infty}F(z)\)</span></p>
+<h3 id="_9">终值定理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>如果F(z)满足下列条件之一：</p>
+<ol>
+<li>F(z)的所有极点在开单位圆内</li>
+<li>F(z)有一个一阶极点在z=1，而其他极点在开单位圆内</li>
+</ol>
+<p>则  <span class="arithmatex">\(\mathop{lim}\limits_{k\rightarrow{\infty}}f(kT)=\mathop{lim}\limits_{z\rightarrow1}[(1-z^{-1})F(z)]\)</span></p>
+<h1 id="_10">离散系统的数学模型<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h1>
+<h2 id="_11">线性差分方程<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>一阶前向差分</strong>：<span class="arithmatex">\(\Delta f(k)=f(k+1)-f(k)\)</span></li>
+<li><strong>n阶前向差分</strong>：<span class="arithmatex">\(\Delta^n f(k)=\Delta^{n-1}f(k+1)-\Delta^{n-1}f(k)\)</span></li>
+<li><strong>后向差分</strong></li>
+</ul>
+<p>用 <span class="arithmatex">\(\frac{y[(n+1)T]-y(nT)}{T}\)</span> 代替 <span class="arithmatex">\(\frac{dy}{dt}\)</span> ，可以将一阶微分方程近似转化为一阶差分方程</p>
+<h3 id="_12">差分方程的求解<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ol>
+<li>迭代法（递推法）</li>
+<li>Z变换法</li>
+</ol>
+<p>例如：根据z变换的移位性质，<span class="arithmatex">\(y[(k+1)T]+2y(kT)=5kT\)</span> 可以变换为 <span class="arithmatex">\(z[Y(z)-Y(0)]+2Y(z)=5\frac{Tz}{(z-1)^2}\)</span></p>
+<h2 id="_13">脉冲传递函数<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>在零初始条件下，<strong>输出 </strong><span class="arithmatex">\(y^*(t)\)</span> 的z变换 <span class="arithmatex">\(Y(z)\)</span> 与<strong>非零输入 </strong><span class="arithmatex">\(r^*(t)\)</span> 的z变换 <span class="arithmatex">\(R(z)\)</span> 之比，<span class="arithmatex">\(G(z)=\frac{Y(z)}{R(z)}\)</span> 称为脉冲传递函数。</p>
+<p>输入输出关系 <span class="arithmatex">\(Y(z)=G(z)R(z)\)</span></p>
+<blockquote>
+<ol>
+<li>
+<p>G(s)表示线性环节本身的传递函数，G(z)表示线性环节和采样器两者组合体的传递函数。</p>
+</li>
+<li>
+<p>G(z)不是通过G(s) 置换两个自变量而成，而是通过求G(s)的Z变换而来</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="_14">脉冲传递函数的推导<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ol>
+<li>两个串联环节间没有采样器的连接</li>
+</ol>
+<p><img alt="image-20240918152448950" src="../../../imgs/image-20240918152448950.png" /></p>
+<ol>
+<li>两个串联环节间有采样器的连接，且采样器同步工作</li>
+</ol>
+<p><img alt="image-20240918152530677" src="../../../imgs/image-20240918152530677.png" /></p>
+<ol>
+<li>带零阶保持器的开环系统的脉冲传递函数</li>
+</ol>
+<p><img alt="image-20240918152649314" src="../../../imgs/image-20240918152649314.png" /></p></div>
             </div>
         </div>
 
