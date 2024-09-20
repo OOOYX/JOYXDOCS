@@ -162,7 +162,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">章节要求</a>
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">章节要求</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -216,6 +216,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#_18" class="nav-link">状态空间模型</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -223,7 +227,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="_1">章节要求<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="_1">章节要求<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p><img alt="image-20240911082217284" src="../../../imgs/image-20240911082217284.png" /></p>
 <p><img alt="image-20240911082231825" src="../../../imgs/image-20240911082231825.png" /></p>
 <h1 id="_2">概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
@@ -317,7 +321,11 @@
 </li>
 </ol>
 </blockquote>
-<h3 id="_14">脉冲传递函数的推导<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>连续系统中传递函数 <span class="arithmatex">\(G(s)\)</span> 等于单位脉冲响应 <span class="arithmatex">\(g(t)\)</span> 的拉氏变换</p>
+<p>离散系统中脉冲传递函数 <span class="arithmatex">\(G(z)\)</span> 等于系统单位脉冲响应序列 <span class="arithmatex">\(K(nT)\)</span> 的z变换系统加权序列</p>
+<h3 id="_14">脉冲传递函数的求法<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h3 id="_15">脉冲传递函数的推导<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h4 id="_16">开环系统<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
 <ol>
 <li>两个串联环节间没有采样器的连接</li>
 </ol>
@@ -329,7 +337,25 @@
 <ol>
 <li>带零阶保持器的开环系统的脉冲传递函数</li>
 </ol>
-<p><img alt="image-20240918152649314" src="../../../imgs/image-20240918152649314.png" /></p></div>
+<p><img alt="image-20240918152649314" src="../../../imgs/image-20240918152649314.png" /></p>
+<h4 id="_17">闭环反馈环节<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20240920082946040" src="../../../imgs/image-20240920082946040.png" /></p>
+<p><img alt="image-20240920083051791" src="../../../imgs/image-20240920083051791.png" /></p>
+<p><img alt="image-20240920083157094" src="../../../imgs/image-20240920083157094.png" /></p>
+<p><img alt="image-20240920083210737" src="../../../imgs/image-20240920083210737.png" /></p>
+<p><strong>视察法</strong>:若前向通道(环内)中有一实际的采样器存在，就可用“视察法”直接求Y(z) <strong>。</strong><span class="arithmatex">\(Y(z)=\frac{G_f(z)}{1-G_0(z)}\)</span></p>
+<p>其中<span class="arithmatex">\(G_0(z)\)</span>​为开环脉冲传递函数（环可以从任一采样器断开，沿信号方向走一周而构成) ; <span class="arithmatex">\(G_f(z)\)</span>​为前向通路中输出量的Z变换</p>
+<h2 id="_18">状态空间模型<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>连续</strong>状态空间模型</li>
+<li><strong>离散</strong>状态空间模型</li>
+</ul>
+<h3 id="_19">建立状态空间模型<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<ol>
+<li>由<strong>差分方程</strong>得到离散状态空间模型</li>
+<li>由<strong>连续状态空间模型</strong>得到离散状态空间模型</li>
+</ol>
+<p><span class="arithmatex">\(\mathop{x}\limits^.(t)=Ax(t)+B\)</span>变换为<span class="arithmatex">\(x(k+1)=G(T)x(k)+H(T)u(k)\)</span>, 其中<span class="arithmatex">\(G(T)=e^{AT}, H(T)=\int_0^Te^{A\tau}Bd\tau\)</span></p></div>
             </div>
         </div>
 

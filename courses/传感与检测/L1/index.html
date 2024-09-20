@@ -156,6 +156,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#_2" class="nav-link">误差理论</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">误差分类</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">随机误差的估计</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">减小误差的方法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -164,6 +181,9 @@
 <h1 id="_1">检测仪表的性能指标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p><strong>1. 检测范围和量程</strong></p>
 <p><strong>2. 输入-输出特性</strong></p>
+<blockquote>
+<p>III型变送器输出电流范围4~20mA</p>
+</blockquote>
 <p><strong>3. 重复性和再现性</strong></p>
 <p><strong>4. 可靠性</strong></p>
 <p><strong>5. 误差</strong></p>
@@ -181,7 +201,44 @@
 <p>准确度等级：…，0.05, 0.1, 0.25, 0.35, 0.5, 1.0, 1.5, 2.5, 4.0, …</p>
 </blockquote>
 <p><strong>7. 稳定性</strong></p>
-<p><strong>8. 动态响应特性</strong></p></div>
+<p><strong>8. 动态响应特性</strong></p>
+<h1 id="_2">误差理论<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p><strong>真值</strong>: 理想的概念, 约定真值</p>
+<p>几种测量真值的方法:</p>
+<ul>
+<li><strong>标准表法</strong>: 准确度更高的仪表的测量值作为真值(<strong>基本误差</strong>小于被检表的<span class="arithmatex">\(\frac{1}{3}\)</span>)</li>
+<li><strong>平均值法</strong></li>
+<li><strong>计量器具法</strong>: 标准件, 砝码等</li>
+</ul>
+<h2 id="_3">误差分类<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>按出现规律:</li>
+<li>
+<p>系统误差, 随机误差, 粗大误差</p>
+</li>
+<li>
+<p>按工作条件:</p>
+</li>
+<li>基本误差: 在<strong>规定使用条件</strong>下仪表的误差</li>
+<li>附加误差: 仪表的使用条件<strong>偏离规定条件</strong></li>
+</ul>
+<h2 id="_4">随机误差的估计<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>标准差: <span class="arithmatex">\(\sigma=\sqrt{\frac{\sum\limits^{n}_{i=1}(x-x_0)^2}{n}}\)</span></li>
+<li>实验标准差: <span class="arithmatex">\(s=\sqrt{\frac{\sum\limits^n_{i=1}(x_i-\mathop{x}\limits^-)^2}{n-1}}\)</span></li>
+</ul>
+<p>可以认为测量值基本落在<span class="arithmatex">\(3\sigma\)</span>区间内, 在此范围外的作为<strong>粗大误差</strong>, 进行剔除</p>
+<h2 id="_5">减小误差的方法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>减小随机误差</strong></li>
+<li>提高仪表准确度</li>
+<li>增加测量次数, 统计处理</li>
+<li>隔离外部干扰、抑制内部噪声，设计专门的滤波器</li>
+<li><strong>减小系统误差</strong></li>
+<li>找出误差产生原因，消除该影响</li>
+<li>引入修正值修正</li>
+<li>差动、参比、闭环</li>
+</ol></div>
             </div>
         </div>
 
