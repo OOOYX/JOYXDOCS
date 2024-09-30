@@ -237,10 +237,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#_24" class="nav-link">离散系统的动态性能分析</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="1"><a href="#_24" class="nav-link">离散系统的动态性能分析</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#_25" class="nav-link">瞬态响应的求解</a>
               <ul class="nav flex-column">
               </ul>
@@ -250,7 +251,11 @@
             
             <li class="nav-item" data-level="1"><a href="#_26" class="nav-link">数字系统设计方法</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#_27" class="nav-link">离散化方法</a>
+            <li class="nav-item" data-level="2"><a href="#_27" class="nav-link">模拟化设计方法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_32" class="nav-link">数字化设计方法</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -407,7 +412,11 @@
 </ul>
 <p><strong>几个特殊的映射:</strong></p>
 <ol>
-<li></li>
+<li>虚轴映射到单位圆</li>
+<li>主带左半部分映射到单位圆内，主带右半部分映射到单位圆外</li>
+<li>s平面实轴的平行线（等频率线）映射为z平面内的原点出发的射线（等<span class="arithmatex">\(\omega\)</span>线）</li>
+<li>s平面虚轴平行线（等衰减率线）映射为z平面内以原点为圆心的圆</li>
+<li>s平面原点出发的射线（等阻尼比轨迹）映射为z平面内原点出发，（1，0）点为终点的一条螺旋线</li>
 </ol>
 <h2 id="_21">稳定性理论的移植<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
 <p><strong>定义:</strong> 若离散系统在<strong>有界输入序列</strong>作用下，其输出序列也是<strong>有界</strong>的，则称该离散系统是稳定的。</p>
@@ -423,7 +432,7 @@
 <li>变换平面法：<span class="arithmatex">\(z=\frac{1+w}{1-w}\)</span> 将z平面变换为w平面, 在w平面上可以使用劳斯判据</li>
 </ol>
 <h2 id="_23">离散系统的稳态误差<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
-<h2 id="_24">离散系统的动态性能分析<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<h1 id="_24">离散系统的动态性能分析<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h1>
 <p><img alt="image-20240927081704652" src="../../../imgs/image-20240927081704652.png" /></p>
 <p>动态性能指标: 上升时间, 峰值时间, 超调量, 调节时间, 稳态误差……</p>
 <h2 id="_25">瞬态响应的求解<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
@@ -436,18 +445,53 @@
 <p>数字化（离散化）设计方法：已知被控对象的传递函数或特性G(Z)，根据所要求的性能指标，设计数字控制器</p>
 </li>
 </ol>
-<h2 id="_27">离散化方法<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
+<h2 id="_27">模拟化设计方法<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
 <p>常用：前/后向差分法，零极点匹配法，双线性变换法，冲激响应不变法，零阶保持法</p>
 <h3 id="_28">前向差分法<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
 <p>利用级数展开，可得<span class="arithmatex">\(z=e^{sT}=1+sT+\cdots\approx1+sT\)</span>, <span class="arithmatex">\(s=\frac{z-1}{T}\)</span></p>
 <p><span class="arithmatex">\(s=\frac{z-1}{T}\)</span> 代入D(s)可得D(z)</p>
+<blockquote>
+<p>这种方法将s域左半平面映射为z域z&lt;1范围, 包含不稳定区域, 离散系统可能不稳定. 不存在频率混叠, 但存在畸变.</p>
+</blockquote>
 <h3 id="_29">后向差分法<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
 <p>同样用级数展开, <span class="arithmatex">\(z=\frac{1}{e^{-sT}}\approx\frac{1}{1-sT}\)</span>，可得<span class="arithmatex">\(s=\frac{z-1}{Tz}\)</span>，代入D(s)可得D(z)</p>
+<blockquote>
+<p>这种方法将s域左半平面映射为z域以0.5为圆心, 0.5为半径的圆, 离散系统稳定性不变. 不产生混叠, 但存在畸变.</p>
+</blockquote>
 <h3 id="_30">零极点匹配法<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
-<p>先将D(s)化为零极点形式 <span class="arithmatex">\(D(s)=\frac{K\prod\limits^m_{i=1}(s-z_i)}{\prod\limits^n_{j=1}(s-p_j)}\)</span></p>
-<p>对应的<span class="arithmatex">\(D(z)=\frac{\prod\limits^m_{i=1}(z-e^{z_iT})}{\prod\limits^n_{j=1}(z-e^{-p_jT})}(z+1)^{n-m}\cdot K\)</span></p>
+<p>先将D(s)化为零极点形式 <span class="arithmatex">\(D(s)=\frac{K\prod\limits^m_{i=1}(s-z_i)}{\prod\limits^n_{j=1}(s-p_j)}\)</span>, 对应的<span class="arithmatex">\(D(z)=\frac{\prod\limits^m_{i=1}(z-e^{z_iT})}{\prod\limits^n_{j=1}(z-e^{-p_jT})}(z+1)^{n-m}\cdot K\)</span></p>
 <h3 id="_31">双线性变换法<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
-<p>由s=lnz的级数展开得出，<span class="arithmatex">\(s=\frac{2}{T}\frac{z-1}{z+1}\)</span></p></div>
+<p>由lnz的级数展开得出，<span class="arithmatex">\(s=\frac{2}{T}\frac{z-1}{z+1}\)</span></p>
+<blockquote>
+<p>相当于用梯形代替积分, 不产生频率混叠，且s左半平面映射到z域单位圆内. 频率产生畸变, 且高频有较大畸变.</p>
+</blockquote>
+<h2 id="_32">数字化设计方法<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
+<h3 id="_33">根轨迹设计方法<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<h3 id="z_4">z域解析设计方法<a class="headerlink" href="#z_4" title="Permanent link">&para;</a></h3>
+<p><strong>拍</strong>：一个采样周期</p>
+<p><strong>最少拍系统：</strong>在典型输入作用下，能以有限拍结束响应过程，且在采样时刻无稳态误差的离散系统。</p>
+<p>最少拍系统的设计目标：在系统稳定的基础上，</p>
+<ol>
+<li>对典型输入信号的稳态偏差为零（在采样时刻上）</li>
+<li>对典型输入信号的过渡过程最短（最少拍）</li>
+<li>控制器是物理可实现的。</li>
+</ol>
+<h4 id="_34">稳定性<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h4>
+<p>如果G(z)中包含有单位圆上或单位圆外的零点或极点时，必须通过选择Φ(z) ，使它们能抵消G(z)中的不稳定零,极点。</p>
+<ol>
+<li>
+<p>在Φe(z)=1-Φ(z)中，以零点的形式把G(z)的不稳定极点包含在内；</p>
+</li>
+<li>
+<p>在Φ(z)中，以零点的形式把G(z)的不稳定零点包含在内</p>
+</li>
+</ol>
+<h4 id="_35">稳态误差<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h4>
+<p>三种典型输入(阶跃, 斜坡, 加速度)的z变换式通式为: <span class="arithmatex">\(R(z)=\frac{A(z)}{(1-z^{-1})^m}\)</span>, 三种响应的m依次为1, 2, 3</p>
+<p>误差的脉冲传递函数为<span class="arithmatex">\(E(z)=R(z)[1-\Phi(z)]=\frac{A(z)[1-\Phi(z)]}{(1-z^{-1})^m}\)</span> </p>
+<p>要使<span class="arithmatex">\(e_{ss}=0\)</span>, 由终值定理可以求得<span class="arithmatex">\(1-\Phi(z)=F(z)(1-z^{-1})^m\)</span>, 不妨取F(z)=1, 此时<span class="arithmatex">\(\Phi(z)\)</span>所有极点都在z平面的零点</p>
+<h4 id="_36">最少拍<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(1-\Phi(z)=(1-z^{-1})^m\)</span>, 对三种输入, 分别取m=1, 2, 3即可</p></div>
             </div>
         </div>
 
